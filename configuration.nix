@@ -121,7 +121,7 @@ with specialArgs;
     kernelParams = [
       "quiet"
       "udev.log_level=0"
-			(if desktop then "nvidia-drm.modeset=1" else {})
+			#(if desktop then "nvidia-drm.modeset=1" else {})
     ];
     kernelPackages = pkgs.linuxPackages_zen;
   };
@@ -143,15 +143,9 @@ with specialArgs;
   services = {
     openssh = {
       enable = server;
-      knownHosts = {
-        frodo = {
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+0JZwpWuhY8CMrdD7SiOHqDPWV+TBgXrjYnxB0vc/T";
-        };
-      };
       ports = [ 2121 ];
       settings = {
         # PasswordAuthentication = false;
-        PermitRootLogin = "yes";
       };
     };
     greetd = {
@@ -199,6 +193,9 @@ with specialArgs;
         hashedPasswordFile = config.sops.secrets."hashedPassword".path;
         isNormalUser = true;
         description = "Lenny";
+				openssh.authorizedKeys.keys = [
+					"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+0JZwpWuhY8CMrdD7SiOHqDPWV+TBgXrjYnxB0vc/T"
+				];
         extraGroups = [
           "networkmanager"
           "wheel"

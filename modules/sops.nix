@@ -26,6 +26,7 @@
       photoprism-password = { };
       ssh-private-key = {
         path = "/home/lenny/.ssh/nixos_ed25519";
+				owner = "lenny";
         mode = "0600";
       };
       nix-key = {
