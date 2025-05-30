@@ -46,6 +46,8 @@
   };
   services.nginx = {
     enable = true;
+		recommendedGzipSettings = true;
+		recommendedOptimisation = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     virtualHosts =
@@ -77,6 +79,25 @@
             locations."/".proxyPass = "http://127.0.0.1:8888/";
           }
         );
+				"vault.lench.org" = (
+					SSL
+					// {
+						extraConfig = ''
+							access_log /var/log/nginx/vault.lench.org.access.log;
+							error_log /var/log/nginx/vault.lench.org.error.log
+						'';
+						locations."/" = {
+							proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
+							proxyWebsockets = true;
+							extraConfig = ''
+								proxy_set_header Host $host;
+								proxy_set_header X-Real-IP $remote_addr;
+								proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+								proxy_set_header X-Forwarded-Proto $scheme;
+							'';
+						};
+					}
+				);
         /* "lench.org" = (
           SSL
           // {
