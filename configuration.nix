@@ -41,6 +41,7 @@ with specialArgs;
           ./modules/sops.nix
           ./frodo/restic.nix
           ./frodo/photoprism.nix
+					./frodo/vaultwarden.nix
           ./frodo/hardware-configuration.nix
         ]
       else
