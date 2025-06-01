@@ -2,28 +2,17 @@
 {
   networking = {
     hostName = "frodo";
+		dhcpcd.enable = false;
     firewall = {
       enable = true;
+			interfaces."eth0".allowedTCPPorts = [443];
       allowedTCPPorts = [
-        # http
-        80
-        443
-        # blocky
-        53
-        23
-        # minecraft
-        25565
-        25564
-        # photoprism
-        2342
-				# grafana
-				3000
+        80 443 # http
+        53 # dnsmasq
+        25565 # minecraft 
       ];
       allowedUDPPorts = [
-        51820
-        53
-        # minecraft voice chat
-        24454
+				53 67 # blocky / dhcp
       ];
     };
     interfaces.wlp3s0.ipv4.addresses = [
@@ -82,10 +71,6 @@
 				"vault.lench.org" = (
 					SSL
 					// {
-						extraConfig = ''
-							access_log /var/log/nginx/vault.lench.org.access.log;
-							error_log /var/log/nginx/vault.lench.org.error.log
-						'';
 						locations."/" = {
 							proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
 							proxyWebsockets = true;
@@ -98,15 +83,20 @@
 						};
 					}
 				);
-        /* "lench.org" = (
-          SSL
-          // {
-            locations."/" = {
-							index = "test.html";
-							root = ".";
-						};
-          }
-        ); */
       };
   };
+	services.dnsmasq = {
+		enable = true;
+		settings = {
+			dhcp-range = [ "192.168.0.2,192.168.0.254" ];
+			dhcp-option = "option:router,192.168.0.1";
+			dhcp-authoritative = true;
+			domain-needed = true;
+			bogus-priv = true;
+			no-resolv = true;
+			server = [ "127.0.0.1#5335" "1.1.1.1" ];
+			local = "/lench.org/";
+			address = "/lench.org/192.168.0.154";
+		};
+	};
 }

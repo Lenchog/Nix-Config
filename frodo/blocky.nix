@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       ports = {
-        dns = 53;
+        dns = 5335;
         https = 4000;
       }; # Port for incoming DNS Queries.
       upstream.default = [
@@ -30,12 +30,6 @@
         #Configure what block categories are used
         clientGroupsBlock = {
           default = [ "ads" ];
-        };
-      };
-      customDNS = {
-        rewrite = {
-          home = "photos.lench.org";
-          rewrite = "192.168.0.154:2342";
         };
       };
       caching = {
