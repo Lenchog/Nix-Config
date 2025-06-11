@@ -137,7 +137,7 @@ with specialArgs;
     graphics = {
       enable = gui;
 			enable32Bit = gui;
-      extraPackages = lib.mkIf laptop [ pkgs.intel-media-driver ];
+      extraPackages = with pkgs; lib.mkIf laptop [ intel-media-driver intel-compute-runtime ];
     };
   };
   musnix.enable = true;
