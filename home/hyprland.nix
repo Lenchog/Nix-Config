@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-	specialArgs,
+  specialArgs,
   ...
 }:
 let
@@ -31,7 +31,13 @@ in
     systemd.enable = true;
     settings = {
       exec-once = "${startup}/bin/startup";
-			monitor = if specialArgs.desktop then [ "HDMI-A-1, 3840x2160, 0x0, 1.25" ] else if specialArgs.laptop then ["eDP_1, 1366x768, 0x0, 1"] else [", preferred, auto, 1"];
+      monitor =
+        if specialArgs.desktop then
+          [ "HDMI-A-1, 3840x2160, 0x0, 1.25" ]
+        else if specialArgs.laptop then
+          [ "eDP_1, 1366x768, 0x0, 1" ]
+        else
+          [ ", preferred, auto, 1" ];
       xwayland.force_zero_scaling = true;
       misc.disable_hyprland_logo = true;
       input = {
