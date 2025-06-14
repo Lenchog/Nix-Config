@@ -5,7 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos.url = "nixpkgs/nixos-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
-    garf.url = "github:lenny0939/garf";
+    garf.url = "github:lenchog/garf";
+    lenchorg = {
+			url = "github:lenchog/lenchorg";
+			flake = false;
+		};
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     musnix.url = "github:musnix/musnix";
     home-manager = {

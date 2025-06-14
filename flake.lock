@@ -437,13 +437,13 @@
       "locked": {
         "lastModified": 1749935857,
         "narHash": "sha256-8pMZ8WfJw1iCSPhwuSijBVP9D1KPLFqcv1M0bHS1lbk=",
-        "owner": "lenny0939",
+        "owner": "lenchog",
         "repo": "garf",
         "rev": "326a08825ef8fd31ac9f8fc6145aebf92b27e6de",
         "type": "github"
       },
       "original": {
-        "owner": "lenny0939",
+        "owner": "lenchog",
         "repo": "garf",
         "type": "github"
       }
@@ -614,6 +614,22 @@
       "original": {
         "owner": "suyashtnt",
         "repo": "kleur",
+        "type": "github"
+      }
+    },
+    "lenchorg": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1749723952,
+        "narHash": "sha256-8oP8Dh6kUCohS+IYNWuZuVeY6TBwXXKvIfLdm4jn2kM=",
+        "owner": "lenchog",
+        "repo": "lenchorg",
+        "rev": "77196ac3e570e54ccc64fe6b5772a5251967e282",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lenchog",
+        "repo": "lenchorg",
         "type": "github"
       }
     },
@@ -1027,6 +1043,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "kleur": "kleur",
+        "lenchorg": "lenchorg",
         "lix-module": "lix-module",
         "musnix": "musnix",
         "niri": "niri",

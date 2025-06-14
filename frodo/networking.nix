@@ -1,11 +1,17 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   networking = {
     hostName = "frodo";
     dhcpcd.enable = false;
+    defaultGateway = "192.168.0.1";
+    useDHCP = false;
     firewall = {
       enable = true;
-      interfaces."eth0".allowedTCPPorts = [ 443 ];
       allowedTCPPorts = [
         80
         443 # http
@@ -17,9 +23,9 @@
         67 # blocky / dhcp
       ];
     };
-    interfaces.wlp3s0.ipv4.addresses = [
+    interfaces.eno1.ipv4.addresses = [
       {
-        address = "192.168.0.154";
+        address = "192.168.0.42";
         prefixLength = 24;
       }
     ];
@@ -70,6 +76,12 @@
             locations."/".proxyPass = "http://127.0.0.1:8888/";
           }
         );
+        "lench.org" = (
+          SSL
+          // {
+            root = "${inputs.lenchorg}";
+          }
+        );
         "vault.lench.org" = (
           SSL
           // {
@@ -101,7 +113,7 @@
         "1.1.1.1"
       ];
       local = "/lench.org/";
-      address = "/lench.org/192.168.0.154";
+      address = "/lench.org/192.168.0.42";
     };
   };
 }
