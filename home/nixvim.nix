@@ -76,7 +76,9 @@
           nixd.enable = true;
           clangd.enable = true;
           bashls.enable = true;
-          html.enable = true;
+          superhtml.enable = true;
+					cssls.enable = true;
+					ts_ls.enable = true;
           gdscript.enable = true;
           gdscript.package = null;
           csharp_ls.enable = true;
