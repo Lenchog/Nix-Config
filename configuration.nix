@@ -64,6 +64,10 @@ with specialArgs;
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
   programs = {
+		direnv = {
+			enable = gui;
+			nix-direnv.enable = true;
+		};
     gamescope = {
       enable = games;
     };
@@ -151,7 +155,8 @@ with specialArgs;
       enable = server;
       ports = [ 2121 ];
       settings = {
-        # PasswordAuthentication = false;
+        PasswordAuthentication = false;
+				PermitRootLogin = "no";
       };
     };
     greetd = {
