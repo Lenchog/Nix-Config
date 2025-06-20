@@ -620,11 +620,11 @@
     "lenchorg": {
       "flake": false,
       "locked": {
-        "lastModified": 1749723952,
-        "narHash": "sha256-8oP8Dh6kUCohS+IYNWuZuVeY6TBwXXKvIfLdm4jn2kM=",
+        "lastModified": 1750461640,
+        "narHash": "sha256-+XPTB5ecnOjTFduar15fSr+AnjHHAVpGOrJf+nU0uN8=",
         "owner": "lenchog",
         "repo": "lenchorg",
-        "rev": "77196ac3e570e54ccc64fe6b5772a5251967e282",
+        "rev": "48349bb9259b25ac9868d199fb3f57c7204d8d1a",
         "type": "github"
       },
       "original": {
