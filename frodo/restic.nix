@@ -5,6 +5,7 @@
       paths = [
         "/var/lib/minecraft/final-clan/world"
         "/var/lib/garf/scores.db"
+				"/var/lib/syncthing/"
       ];
       repository = "/var/restic";
       passwordFile = config.sops.secrets."resticPassword".path;
