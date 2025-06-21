@@ -24,6 +24,7 @@
   };
   services = {
     mako.enable = true;
+		syncthing.enable = true;
   };
   stylix.enable = specialArgs.gui;
   gtk.enable = specialArgs.gui;

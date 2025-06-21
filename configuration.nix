@@ -20,11 +20,11 @@ with specialArgs;
         else
           { }
       )
+      (if laptop then import ./modules/kanata.nix else { })
       ./modules/sops.nix
       ./modules/nh.nix
 
       ./modules/options.nix
-      ./modules/kanata.nix
       (if impermanence then import ./modules/impermanence.nix else { })
     ]
     ++ (
@@ -32,6 +32,7 @@ with specialArgs;
         [
           inputs.disko.nixosModules.disko
           ./disko-config.nix
+          ./frodo/hardware-configuration.nix
           ./frodo/minecraft.nix
           ./frodo/garf.nix
           ./frodo/searx.nix
@@ -42,7 +43,7 @@ with specialArgs;
           ./frodo/restic.nix
           ./frodo/photoprism.nix
           ./frodo/vaultwarden.nix
-          ./frodo/hardware-configuration.nix
+					./frodo/syncthing.nix
         ]
       else
         [ ]
