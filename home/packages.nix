@@ -18,12 +18,12 @@
     # Apps
     spotify
     blanket
-    bottom # Task manager except cool
+    bottom
+		obsidian
     webcord
     pavucontrol
     yt-dlp
     audacity
-    qmk
     prismlauncher
     hyprshot
     wl-clipboard
