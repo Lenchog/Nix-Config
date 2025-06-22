@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos.url = "nixpkgs/nixos-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
     garf.url = "github:lenchog/garf";
@@ -16,14 +20,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    kleur = {
-      url = "github:suyashtnt/kleur";
-    };
-    impermanence.url = "github:nix-community/impermanence";
     stylix.url = "github:danth/stylix";
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -34,6 +30,7 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
     };
     sops-nix.url = "github:Mic92/sops-nix";
+		nix-topology.url = "github:oddlama/nix-topology";
   };
   outputs =
     {
@@ -43,10 +40,21 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
+			pkgs = import nixpkgs {
+      	system = "x86_64-linux";
+				overlays = [
+					inputs.nix-topology.overlays.default
+				];
+			};
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+			topology.x86_64-linux = import inputs.nix-topology {
+				inherit pkgs;
+				modules = [
+					{ nixosConfigurations = self.nixosConfigurations; }
+				];
+    };
       deploy.nodes.frodo = {
         hostname = "frodo";
         profiles.system = {
@@ -57,7 +65,7 @@
       nixosConfigurations = {
         legolas = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs system;
+            inherit inputs pkgs;
             gui = true;
             laptop = true;
             desktop = false;
@@ -70,7 +78,7 @@
         };
         aragorn = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs system;
+            inherit inputs pkgs;
             gui = true;
             laptop = false;
             desktop = true;
@@ -102,7 +110,7 @@
         */
         frodo = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs system;
+            inherit inputs pkgs;
             gui = false;
             laptop = false;
             desktop = false;

@@ -12,6 +12,7 @@ with specialArgs;
       inputs.home-manager.nixosModules.home-manager
       inputs.lix-module.nixosModules.default
       inputs.musnix.nixosModules.musnix
+			inputs.nix-topology.nixosModules.default
       (
         if desktop then
           import ./archive/machines/aragorn/hardware-configuration-aragorn.nix
@@ -168,7 +169,7 @@ with specialArgs;
         };
       };
     };
-    fail2ban.enable = true;
+    fail2ban.enable = server;
     getty.autologinUser = lib.mkIf vm "lenny";
     blueman.enable = gui;
     tlp.enable = laptop;
