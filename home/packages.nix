@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # Useless Rice Stuff
     mangohud # Overlay, like MSI Afterburner

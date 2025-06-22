@@ -50,7 +50,6 @@ with specialArgs;
         [ ]
     );
   fonts.fontconfig.allowBitmaps = true;
-  nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
       experimental-features = [
