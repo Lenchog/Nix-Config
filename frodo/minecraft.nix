@@ -152,8 +152,8 @@ in
     dataDir = "/var/lib/minecraft";
     servers = {
       final-clan = {
-        enable = true;
-        package = pkgs.fabricServers.fabric-1_21_4;
+        enable = false;
+        package = {};
         serverProperties = {
           server-port = 25564;
           difficulty = "hard";
