@@ -153,7 +153,7 @@ in
     servers = {
       final-clan = {
         enable = false;
-        package = {};
+        package = { };
         serverProperties = {
           server-port = 25564;
           difficulty = "hard";

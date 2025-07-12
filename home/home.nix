@@ -18,15 +18,15 @@
     nixvim.enable = true;
     helix.enable = true;
     niri.enable = specialArgs.gui;
-		foot = {
-			enable = specialArgs.gui;
-			server.enable = true;
-		};
+    foot = {
+      enable = specialArgs.gui;
+      server.enable = true;
+    };
     #slippi-launcher.enable = specialArgs.games;
   };
   services = {
     mako.enable = true;
-		syncthing.enable = true;
+    syncthing.enable = true;
   };
   stylix.enable = specialArgs.gui;
   gtk.enable = specialArgs.gui;

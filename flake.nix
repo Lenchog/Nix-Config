@@ -12,9 +12,9 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     garf.url = "github:lenchog/garf";
     lenchorg = {
-			url = "github:lenchog/lenchorg";
-			flake = false;
-		};
+      url = "github:lenchog/lenchorg";
+      flake = false;
+    };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     musnix.url = "github:musnix/musnix";
     home-manager = {
@@ -31,7 +31,7 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
     };
     sops-nix.url = "github:Mic92/sops-nix";
-		nix-topology.url = "github:oddlama/nix-topology";
+    nix-topology.url = "github:oddlama/nix-topology";
   };
   outputs =
     {
@@ -41,24 +41,24 @@
       ...
     }@inputs:
     let
-			pkgs = import nixpkgs {
-      	system = "x86_64-linux";
-				overlays = [
-					inputs.nix-topology.overlays.default
-				];
-				config = {
-					allowUnfree = true;
-				};
-			};
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [
+          inputs.nix-topology.overlays.default
+        ];
+        config = {
+          allowUnfree = true;
+        };
+      };
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-			topology.x86_64-linux = import inputs.nix-topology {
-				inherit pkgs;
-				modules = [
-					{ nixosConfigurations = self.nixosConfigurations; }
-				];
-    };
+      topology.x86_64-linux = import inputs.nix-topology {
+        inherit pkgs;
+        modules = [
+          { nixosConfigurations = self.nixosConfigurations; }
+        ];
+      };
       deploy.nodes.frodo = {
         hostname = "frodo";
         profiles.system = {

@@ -16,10 +16,10 @@
     ncdu
     # Apps
     spotify
-		ldtk
+    ldtk
     blanket
     bottom
-		obsidian
+    obsidian
     webcord
     pavucontrol
     yt-dlp

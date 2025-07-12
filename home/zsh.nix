@@ -35,7 +35,7 @@
           rev = "v0.11.0";
           sha256 = "sha256-xbchXJTFWeABTwq6h4KWLh+EvydDrDzcY9AQVK65RS8=";
         };
-      } 
+      }
       {
         name = "powerlevel10k";
         src = pkgs.zsh-powerlevel10k;
@@ -46,7 +46,7 @@
         src = ./.;
         file = "p10k.zsh";
       }
-    ]; 
+    ];
     initContent = ''
       ${pkgs.fastfetch}/bin/fastfetch
       bindkey '^H' backward-kill-word

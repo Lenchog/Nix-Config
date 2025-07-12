@@ -12,7 +12,7 @@ with specialArgs;
       inputs.home-manager.nixosModules.home-manager
       inputs.lix-module.nixosModules.default
       inputs.musnix.nixosModules.musnix
-			inputs.nix-topology.nixosModules.default
+      inputs.nix-topology.nixosModules.default
       (
         if desktop then
           import ./archive/machines/aragorn/hardware-configuration-aragorn.nix
@@ -44,7 +44,7 @@ with specialArgs;
           ./frodo/restic.nix
           ./frodo/photoprism.nix
           ./frodo/vaultwarden.nix
-					./frodo/syncthing.nix
+          ./frodo/syncthing.nix
         ]
       else
         [ ]
@@ -65,10 +65,10 @@ with specialArgs;
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
   programs = {
-		direnv = {
-			enable = gui;
-			nix-direnv.enable = true;
-		};
+    direnv = {
+      enable = gui;
+      nix-direnv.enable = true;
+    };
     gamescope = {
       enable = games;
     };
@@ -157,7 +157,7 @@ with specialArgs;
       ports = [ 2121 ];
       settings = {
         PasswordAuthentication = false;
-				PermitRootLogin = "no";
+        PermitRootLogin = "no";
       };
     };
     greetd = {

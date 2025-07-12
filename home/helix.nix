@@ -9,34 +9,34 @@
     settings = {
       theme = lib.mkForce "catppuccin_mocha";
       editor = {
-      line-number = "relative";
+        line-number = "relative";
       };
     };
-		languages = {
+    languages = {
       language = with pkgs; [
-			  {
-		  		name = "nix";
-	  			auto-format = true;
-	  			formatter.command = "${nixfmt}/bin/nixfmt";
-          language-servers = [nil];
-	  		}
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "${nixfmt}/bin/nixfmt";
+          language-servers = [ nil ];
+        }
         {
           name = "rust";
           auto-format = true;
           formatter.command = "${cargo}/bin/cargo fmt";
-          language-servers = [rust-analyzer];
+          language-servers = [ rust-analyzer ];
         }
-	  	];
-    language-server = {
+      ];
+      language-server = {
         rust-analyzer = {
           commands = "rust-analyzer";
-          config = {};
+          config = { };
         };
-				nil = {
-					commands = "${inputs.nil}/bin/nil";
-					config = {};
-				};
-    };
+        nil = {
+          commands = "${inputs.nil}/bin/nil";
+          config = { };
+        };
+      };
     };
   };
 }
