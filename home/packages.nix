@@ -16,6 +16,7 @@
     ncdu
     # Apps
     spotify
+		ldtk
     blanket
     bottom
 		obsidian
