@@ -5,10 +5,38 @@
   ...
 }:
 {
-  # xdg.configFile = {"helix/themes/catppuccin_mocha.toml" = lib.mkForce "./helix-themes/default_catppuccin_mocha.toml";};
   programs.helix = {
     settings = {
-      theme = lib.mkForce "gruvbok_community";
+      theme = lib.mkForce "catppuccin_mocha";
+      editor = {
+      line-number = "relative";
+      };
+    };
+		languages = {
+      language = with pkgs; [
+			  {
+		  		name = "nix";
+	  			auto-format = true;
+	  			formatter.command = "${nixfmt}/bin/nixfmt";
+          language-servers = [nil];
+	  		}
+        {
+          name = "rust";
+          auto-format = true;
+          formatter.command = "${cargo}/bin/cargo fmt";
+          language-servers = [rust-analyzer];
+        }
+	  	];
+    language-server = {
+        rust-analyzer = {
+          commands = "rust-analyzer";
+          config = {};
+        };
+				nil = {
+					commands = "${inputs.nil}/bin/nil";
+					config = {};
+				};
+    };
     };
   };
 }

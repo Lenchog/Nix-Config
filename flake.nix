@@ -7,6 +7,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nil.url = "github:oxalica/nil";
     nixos.url = "nixpkgs/nixos-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
     garf.url = "github:lenchog/garf";
