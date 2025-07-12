@@ -5,14 +5,14 @@
 }:
 {
   stylix = {
-    image = ../wallpapers/kida.png;
+    image = ../wallpapers/lakeside.png;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     #base16Scheme = inputs.kleur.themes.${pkgs.system}.dark.base16;
-    #opacity.terminal = 0.8;
+    opacity.terminal = 0.8;
 
     fonts = {
       monospace = {
@@ -36,6 +36,5 @@
       };
     };
   };
-  #wayland.windowManager.hyprland.settings.monitor = [ "HDMI-A-1, highres, 0x0, 1.5" ];
   blur = false;
 }
