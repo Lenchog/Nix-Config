@@ -24,7 +24,7 @@
           	_    b    g    d    f    v     z   l    u    o    y  _    _
            C-bspc n    s    t    h    m    '    r    e    a    i    /
           	_         c    p    w    k  q  x    j    ;    .    ,    _
-          	_    _      lalt               _            @*  @qwr _
+          	_    lalt      @met               _            @*  @qwr _
           )
           (deflayer nav
           	_    _    _    _    _    _    _    _    _    _    _    _    _
@@ -38,6 +38,7 @@
           	wrl (layer-switch whirl)
           	nav (layer-while-held nav)
           	alt (multi alt(layer-while-held qwerty))
+          	met (multi met(layer-while-held qwerty))
           	* (switch
           		((key-history w 1)) h break
           		((key-history y 1)) , break
