@@ -17,9 +17,11 @@
     zoxide.enable = true;
     nixvim.enable = true;
     helix.enable = true;
-    kitty.enable = specialArgs.gui;
-    ghostty.enable = specialArgs.gui;
     niri.enable = specialArgs.gui;
+		foot = {
+			enable = specialArgs.gui;
+			server.enable = true;
+		};
     #slippi-launcher.enable = specialArgs.games;
   };
   services = {

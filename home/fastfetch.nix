@@ -2,15 +2,14 @@
 {
   home.packages = [ pkgs.fastfetch ];
   xdg.configFile."fastfetch/config.jsonc".text =
-    # json
     ''
       	{
           "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
       		"logo": {
-      			"type": "kitty-direct",
-      			"source": "${./nixos.png}",
-      			"width": 34,
-      			"height": 17
+      			"type": "raw",
+      			"source": "${./nixos.sixel}",
+      			"width": 40,
+      			"height": 22
           },
           "modules": [
               "title",
@@ -27,18 +26,18 @@
                   "keyColor": "yellow",
                   "format": "{6}{?6} {?}{10} {8}"
               },
-      				/*
+      				
               {
                   "type": "kernel",
                   "key": "├",
                   "keyColor": "yellow"
               },
-              {
+              /* {
                   "type": "packages",
                   "key": "├󰏖",
                   "keyColor": "yellow"
-              },
-      				*/
+              }, */
+      			
               {
                   "type": "shell",
                   "key": "└",
@@ -73,13 +72,13 @@
                   "key": "└",
                   "keyColor": "blue"
               },
-      				/*
+      				
               {
                   "type": "wallpaper",
                   "key": "└󰸉",
                   "keyColor": "blue"
               },
-      				*/
+      			
 
               "break",
               {
