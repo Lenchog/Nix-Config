@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, config, ... }:
 let
   audio =
     pkgs.writeShellScriptBin "audio"
@@ -47,20 +43,7 @@ in
       			(bottom :screen screen))))
 
       (defwidget top [screen]
-      	(workspaces))
-
-      (defwidget workspaces []
-      	(box :orientation "v" :style "color: #${config.lib.stylix.colors.base0D}"
-      		"''${workspace1}"
-      		"''${workspace2}"
-      		"''${workspace3}"
-      		"''${workspace4}"
-      		"''${workspace5}"
-      		"''${workspace6}"
-      		"''${workspace7}"
-      		"''${workspace8}"
-      		"''${workspace9}"
-      		"''${workspace10}"))
+      		(box :class "metric" :style "color: #${config.lib.stylix.colors.base09}"(date)))
 
       (defwidget middle [] (time))
       (defwidget time []
@@ -88,7 +71,7 @@ in
 
       		(volume)
 
-      		(battery)
+      		(battery)))
 
       		;(metric :icon ""
       		;        :font-size 0.8
@@ -98,7 +81,6 @@ in
 
       		;(metric :icon "" "''${round(EWW_CPU.avg, 0)}%")
 
-      		(box :class "metric" :style "color: #${config.lib.stylix.colors.base09}"(date))))
 
       (defwidget music-button []
       	(button :onclick "playerctl play-pause"
@@ -157,17 +139,6 @@ in
 
       (deflisten volume :initial "0" "${audio}/bin/audio volume")
 
-      (deflisten workspace1 :initial "0" "${workspaces}/bin/workspaces 1")
-      (deflisten workspace2 :initial "0" "${workspaces}/bin/workspaces 2")
-      (deflisten workspace3 :initial "0" "${workspaces}/bin/workspaces 3")
-      (deflisten workspace4 :initial "0" "${workspaces}/bin/workspaces 4")
-      (deflisten workspace5 :initial "0" "${workspaces}/bin/workspaces 5")
-      (deflisten workspace6 :initial "0" "${workspaces}/bin/workspaces 6")
-      (deflisten workspace7 :initial "0" "${workspaces}/bin/workspaces 7")
-      (deflisten workspace8 :initial "0" "${workspaces}/bin/workspaces 8")
-      (deflisten workspace9 :initial "0" "${workspaces}/bin/workspaces 9")
-      (deflisten workspace10 :initial "0" "${workspaces}/bin/workspaces 10")
-
       (deflisten music_data
       	:initial `{"status": ""}`
       	`
@@ -184,13 +155,8 @@ in
       (defpoll month    :interval "1h"  "date +%m")
       (defpoll year     :interval "1h"  "date +%y")
 
-      (defvar workspaces_1_yuck "")
-      (defvar workspaces_2_yuck "")
-
-
       	(defwindow bar
       		:monitor 0
-      		; :monitor "DisplayPort-0"
       		:stacking "fg"
       		:geometry (geometry :x 0 :y 0 :width "40px" :height "100%" :anchor "center left")
       		:exclusive true
