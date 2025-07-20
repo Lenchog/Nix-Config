@@ -8,12 +8,11 @@ let
   ];
   minimal = [
     "/var/lib/garf/scores.db"
-    "/var/lib/syncthing"
     "/var/lib/vaultwarden"
   ];
   pruneOpts = [
-    "--keep-daily 7"
-    "--keep-weekly 5"
+    "--keep-daily 3"
+    "--keep-weekly 3"
     "--keep-monthly 3"
     "--keep-yearly 9999"
   ];
@@ -47,7 +46,7 @@ in
     timers.rclone = {
       enable = true;
       timerConfig = {
-        OnCalendar = "hourly";
+        OnCalendar = "daily";
       };
     };
     services.rclone = {
