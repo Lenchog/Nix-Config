@@ -5,37 +5,47 @@
   ...
 }:
 {
-  programs.helix = {
+  programs.helix = with pkgs; {
+    defaultEditor = true;
+    extraPackages = [ inputs.nil ];
     settings = {
-      theme = lib.mkForce "catppuccin_mocha";
+      theme = lib.mkForce "t_catppuccin_mocha";
       editor = {
         line-number = "relative";
+
+        lsp = {
+          display-messages = true;
+        };
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics.cursor-line = "warning";
+      };
+    };
+    themes = {
+      t_catppuccin_mocha = {
+        inherits = "catppuccin_mocha";
+        "ui.background" = { };
       };
     };
     languages = {
-      language = with pkgs; [
+      language = [
         {
           name = "nix";
           auto-format = true;
           formatter.command = "${nixfmt}/bin/nixfmt";
-          language-servers = [ nil ];
+          language-servers = [ "nil" ];
         }
         {
           name = "rust";
           auto-format = true;
-          formatter.command = "${cargo}/bin/cargo fmt";
-          language-servers = [ rust-analyzer ];
+          language-servers = [ "rust-analyzer" ];
         }
       ];
-      language-server = {
-        rust-analyzer = {
-          commands = "rust-analyzer";
-          config = { };
-        };
-        nil = {
-          commands = "${inputs.nil}/bin/nil";
-          config = { };
-        };
+      language-server.rust-analyzer.config.check = {
+        command = "clippy";
+      };
+      language-server.nil = {
+        commands = "${inputs.nil}/bin/nil";
+        config = { };
       };
     };
   };
