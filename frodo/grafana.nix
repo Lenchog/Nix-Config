@@ -17,32 +17,65 @@
   };
   services.prometheus = {
     enable = true;
-    exporters.node = {
-      enable = true;
-      port = 9000;
-      enabledCollectors = [ "systemd" ];
-      extraFlags = [
-        "--collector.ethtool"
-        "--collector.softirqs"
-        "--collector.tcpstat"
-      ];
+    exporters = {
+      node = {
+        enable = true;
+        port = 9000;
+        enabledCollectors = [ "systemd" ];
+        extraFlags = [
+          "--collector.ethtool"
+          "--collector.softirqs"
+          "--collector.tcpstat"
+        ];
+      };
+      nginx = {
+        enable = true;
+        port = 9001;
+      };
+      dnsmasq = {
+        enable = true;
+        port = 9002;
+      };
+      restic = {
+        enable = true;
+        repository = "/var/restic";
+        port = 9003;
+      };
+      wireguard = {
+        enable = true;
+        port = 9004;
+      };
     };
     scrapeConfigs = [
       {
-        job_name = "prometheus";
+        job_name = "node";
         static_configs = [
           {
-            targets = [ "localhost:${toString config.services.prometheus.exporters.node.port}" ];
+            targets = [
+              "localhost:${toString config.services.prometheus.exporters.node.port}"
+            ];
           }
         ];
       }
       {
         job_name = "minecraft";
-        static_configs = [
-          {
-            targets = [ "localhost:25585" ];
-          }
-        ];
+        static_configs = [ { targets = [ "localhost:25585" ]; } ];
+      }
+      {
+        job_name = "nginx";
+        static_configs = [ { targets = [ "localhost:9001" ]; } ];
+      }
+      {
+        job_name = "dnsmasq";
+        static_configs = [ { targets = [ "localhost:9002" ]; } ];
+      }
+      {
+        job_name = "restic";
+        static_configs = [ { targets = [ "localhost:9003" ]; } ];
+      }
+      {
+        job_name = "wireguard";
+        static_configs = [ { targets = [ "localhost:9004" ]; } ];
       }
     ];
   };
