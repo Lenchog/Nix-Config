@@ -1,11 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # Useless Rice Stuff
     mangohud # Overlay, like MSI Afterburner
-    dolphin-emu
-    gh
     git
+    gh
     # Utilities
     zip
     unzip
@@ -17,23 +15,14 @@
     # Apps
     spotify
     ldtk
-    blanket
     bottom
     obsidian
     webcord
     pavucontrol
-    yt-dlp
     audacity
     prismlauncher
     hyprshot
-    wl-clipboard
     nix-search-cli
     easyeffects
-    (lutris.override {
-      extraPkgs = pkgs: [
-        wine-wayland
-        shadps4
-      ];
-    })
   ];
 }
