@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, config, ... }:
 {
   stylix = {
     image = ../wallpapers/lakeside.png;
@@ -36,5 +32,4 @@
       };
     };
   };
-  blur = false;
 }

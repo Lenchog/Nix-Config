@@ -80,11 +80,6 @@ with specialArgs;
       defaultEditor = true;
     };
     gamemode.enable = games;
-    hyprland = {
-      enable = gui;
-      withUWSM = true;
-      xwayland.enable = true;
-    };
     steam = {
       enable = games;
       gamescopeSession.enable = true;

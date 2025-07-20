@@ -1,8 +1,4 @@
-{
-  specialArgs,
-  inputs,
-  ...
-}:
+{ specialArgs, inputs, ... }:
 {
   home = {
     username = "lenny";
@@ -30,7 +26,6 @@
   };
   stylix.enable = specialArgs.gui;
   gtk.enable = specialArgs.gui;
-  wayland.windowManager.hyprland.enable = specialArgs.gui;
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     inputs.stylix.homeModules.stylix
@@ -43,7 +38,6 @@
     ./wofi.nix
     ./niri.nix
     ./git.nix
-    ./hyprland.nix
     ./packages.nix
     ./zsh.nix
     ./themes.nix
