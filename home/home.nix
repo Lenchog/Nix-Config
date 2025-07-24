@@ -1,4 +1,5 @@
 { specialArgs, inputs, ... }:
+with specialArgs;
 {
   home = {
     username = "lenny";
@@ -6,26 +7,25 @@
   };
   programs = {
     home-manager.enable = true;
-    firefox.enable = specialArgs.gui;
-    wofi.enable = specialArgs.gui;
+    firefox.enable = gui;
+    wofi.enable = gui;
     git.enable = true;
     zsh.enable = true;
     zoxide.enable = true;
     nixvim.enable = true;
     helix.enable = true;
-    niri.enable = specialArgs.gui;
+    niri.enable = gui;
     foot = {
-      enable = specialArgs.gui;
-      server.enable = true;
+      enable = gui;
+      server.enable = gui;
     };
-    #slippi-launcher.enable = specialArgs.games;
   };
   services = {
-    mako.enable = true;
+    mako.enable = gui;
     syncthing.enable = true;
   };
-  stylix.enable = specialArgs.gui;
-  gtk.enable = specialArgs.gui;
+  stylix.enable = gui;
+  gtk.enable = gui;
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     inputs.stylix.homeModules.stylix
