@@ -36,11 +36,12 @@
         enable = true;
         port = 9002;
       };
-      restic = {
-        enable = true;
-        repository = "/var/restic";
-        port = 9003;
-      };
+      # restic = {
+      #   enable = true;
+      #   repository = "/var/restic";
+      #   passwordFile = "${config.sops.secrets."resticPassword".path}";
+      #   port = 9003;
+      # };
       wireguard = {
         enable = true;
         port = 9004;
