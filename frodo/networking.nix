@@ -34,8 +34,6 @@
     acceptTerms = true;
     defaults.email = "lennyescott@gmail.com";
     certs."lench.org" = {
-      dnsProvider = "desec";
-      webroot = null;
       environmentFile = "${pkgs.writeText "desec-creds" ''
         DESEC_TOKEN_FILE=${config.sops.secrets."desec-token".path}
       ''}";
