@@ -1,10 +1,4 @@
-{
-  lib,
-  inputs,
-  pkgs,
-  ...
-}:
-{
+{ lib, inputs, pkgs, ... }: {
   programs.helix = with pkgs; {
     defaultEditor = true;
     extraPackages = [ inputs.nil ];
@@ -13,12 +7,11 @@
       editor = {
         line-number = "relative";
 
-        lsp = {
-          display-messages = true;
-        };
+        lsp = { display-messages = true; };
         end-of-line-diagnostics = "hint";
         inline-diagnostics.cursor-line = "warning";
       };
+      keys.insert = { C-backspace = "delete_word_backward"; };
     };
     themes = {
       t_catppuccin_mocha = {
@@ -40,9 +33,7 @@
           language-servers = [ "rust-analyzer" ];
         }
       ];
-      language-server.rust-analyzer.config.check = {
-        command = "clippy";
-      };
+      language-server.rust-analyzer.config.check = { command = "clippy"; };
       language-server.nil = {
         commands = "${inputs.nil}/bin/nil";
         config = { };
