@@ -65,6 +65,7 @@ with specialArgs;
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
   programs = {
+    dconf.enable = gui;
     direnv = {
       enable = gui;
       nix-direnv.enable = true;
