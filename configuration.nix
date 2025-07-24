@@ -7,48 +7,47 @@
 }:
 with specialArgs;
 {
-  imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
-      inputs.lix-module.nixosModules.default
-      inputs.musnix.nixosModules.musnix
-      inputs.nix-topology.nixosModules.default
-      (
-        if desktop then
-          import ./archive/machines/aragorn/hardware-configuration-aragorn.nix
-        else if laptop then
-          import ./archive/machines/legolas/hardware-configuration-legolas.nix
-        else
-          { }
-      )
-      (if laptop then import ./modules/kanata.nix else { })
-      ./modules/sops.nix
-      ./modules/nh.nix
-
-      ./modules/options.nix
-      (if impermanence then import ./modules/impermanence.nix else { })
-    ]
-    ++ (
-      if server then
-        [
-          inputs.disko.nixosModules.disko
-          ./disko-config.nix
-          ./frodo/hardware-configuration.nix
-          ./frodo/minecraft.nix
-          ./frodo/garf.nix
-          ./frodo/searx.nix
-          ./frodo/blocky.nix
-          ./frodo/networking.nix
-          ./frodo/grafana.nix
-          ./modules/sops.nix
-          ./frodo/restic.nix
-          ./frodo/photoprism.nix
-          ./frodo/vaultwarden.nix
-          ./frodo/syncthing.nix
-        ]
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.lix-module.nixosModules.default
+    inputs.musnix.nixosModules.musnix
+    inputs.nix-topology.nixosModules.default
+    (
+      if desktop then
+        import ./archive/machines/aragorn/hardware-configuration-aragorn.nix
+      else if laptop then
+        import ./archive/machines/legolas/hardware-configuration-legolas.nix
       else
-        [ ]
-    );
+        { }
+    )
+    (if laptop then import ./modules/kanata.nix else { })
+    ./modules/sops.nix
+    ./modules/nh.nix
+
+    ./modules/options.nix
+    (if impermanence then import ./modules/impermanence.nix else { })
+  ]
+  ++ (
+    if server then
+      [
+        inputs.disko.nixosModules.disko
+        ./disko-config.nix
+        ./frodo/hardware-configuration.nix
+        ./frodo/minecraft.nix
+        ./frodo/garf.nix
+        ./frodo/searx.nix
+        ./frodo/blocky.nix
+        ./frodo/networking.nix
+        ./frodo/grafana.nix
+        ./modules/sops.nix
+        ./frodo/restic.nix
+        ./frodo/photoprism.nix
+        ./frodo/vaultwarden.nix
+        ./frodo/syncthing.nix
+      ]
+    else
+      [ ]
+  );
   fonts.fontconfig.allowBitmaps = true;
   nix = {
     settings = {

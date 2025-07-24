@@ -12,11 +12,7 @@ in
   programs.niri = {
     settings = {
       prefer-no-csd = true;
-      spawn-at-startup = [
-        {
-          command = [ "${startup}/bin/startup" ];
-        }
-      ];
+      spawn-at-startup = [ { command = [ "${startup}/bin/startup" ]; } ];
       environment = {
         DISPLAY = ":0";
       };
@@ -28,6 +24,7 @@ in
         focus-ring = {
           enable = false;
         };
+        default-column-width.proportion = 0.5;
       };
       binds =
         with pkgs;
