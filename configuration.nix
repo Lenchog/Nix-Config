@@ -64,6 +64,15 @@ with specialArgs;
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
   programs = {
+    uwsm = {
+      enable = true;
+      waylandCompositors = {
+        niri = {
+          prettyName = "niri";
+          binPath = "${pkgs.niri}/bin/niri-session";
+        };
+      };
+    };
     dconf.enable = gui;
     direnv = {
       enable = gui;
@@ -75,10 +84,6 @@ with specialArgs;
     adb.enable = laptop;
     zsh.enable = true;
     nh.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
     gamemode.enable = games;
     steam = {
       enable = games;
@@ -101,7 +106,10 @@ with specialArgs;
     };
   };
   hardware.steam-hardware.enable = games;
-  powerManagement.enable = laptop;
+  powerManagement = {
+    enable = laptop;
+    powertop.enable = laptop;
+  };
   console = {
     earlySetup = true;
     font = "${pkgs.spleen}/share/consolefonts/spleen-16x32.psfu";
@@ -159,7 +167,7 @@ with specialArgs;
       enable = gui;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd '${pkgs.uwsm}/bin/uwsm start default'";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd '${pkgs.uwsm}/bin/uwsm start -F default'";
         };
       };
     };
@@ -167,6 +175,7 @@ with specialArgs;
     getty.autologinUser = lib.mkIf vm "lenny";
     blueman.enable = gui;
     tlp.enable = laptop;
+    thermald.enable = laptop;
     kanata.enable = laptop;
     pipewire = {
       enable = gui;
@@ -225,6 +234,10 @@ with specialArgs;
   system.stateVersion = "24.11";
   systemd.services = {
     kanata-laptop = {
+      wantedBy = lib.mkForce [ "graphical.target" ];
+      unitConfig.After = [ "graphical.target" ];
+    };
+    powertop = {
       wantedBy = lib.mkForce [ "graphical.target" ];
       unitConfig.After = [ "graphical.target" ];
     };

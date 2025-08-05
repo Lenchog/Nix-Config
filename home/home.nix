@@ -12,7 +12,6 @@ with specialArgs;
     git.enable = true;
     zsh.enable = true;
     zoxide.enable = true;
-    nixvim.enable = true;
     helix.enable = true;
     niri.enable = gui;
     foot = {
