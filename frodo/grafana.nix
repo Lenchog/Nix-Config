@@ -29,7 +29,7 @@
         ];
       };
       nginx = {
-        enable = true;
+        enable = false;
         port = 9001;
       };
       dnsmasq = {

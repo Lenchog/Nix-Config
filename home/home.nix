@@ -14,6 +14,7 @@ with specialArgs;
     zoxide.enable = true;
     helix.enable = true;
     niri.enable = gui;
+    zellij.enable = true;
     foot = {
       enable = gui;
       server.enable = gui;
@@ -47,5 +48,6 @@ with specialArgs;
     ./mako.nix
     ./lf.nix
     ./ghostty.nix
+    ./zellij.nix
   ];
 }

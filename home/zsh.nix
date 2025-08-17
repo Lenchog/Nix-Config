@@ -47,9 +47,20 @@
         file = "p10k.zsh";
       }
     ];
-    initContent = ''
-      ${pkgs.fastfetch}/bin/fastfetch
-      bindkey '^H' backward-kill-word
+    initContent = with pkgs; ''
+      # if [[ -z "$ZELLIJ" ]]; then
+      #     if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+      #         ${zellij}/bin/zellij attach -c
+      #     else
+      #         ${zellij}/bin/zellij
+      #     fi
+
+      #     if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+      #         exit
+      #     fi
+      # fi
+      ${fastfetch}/bin/fastfetch
+       bindkey '^H' backward-kill-word
     '';
   };
   home.sessionVariables = {

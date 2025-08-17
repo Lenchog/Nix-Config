@@ -41,14 +41,16 @@ with specialArgs;
         ./frodo/grafana.nix
         ./modules/sops.nix
         ./frodo/restic.nix
-        ./frodo/photoprism.nix
+        ./frodo/immich.nix
         ./frodo/vaultwarden.nix
         ./frodo/syncthing.nix
+        #./frodo/wireguard.nix
       ]
     else
       [ ]
   );
   fonts.fontconfig.allowBitmaps = true;
+  services.jellyfin.enable = server;
   nix = {
     settings = {
       experimental-features = [
@@ -65,7 +67,7 @@ with specialArgs;
   i18n.defaultLocale = "en_AU.UTF-8";
   programs = {
     uwsm = {
-      enable = true;
+      enable = gui;
       waylandCompositors = {
         niri = {
           prettyName = "niri";
@@ -167,7 +169,7 @@ with specialArgs;
       enable = gui;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd '${pkgs.uwsm}/bin/uwsm start -F default'";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd '${pkgs.uwsm}/bin/uwsm start -F default'";
         };
       };
     };
@@ -203,7 +205,7 @@ with specialArgs;
   };
   users = {
     mutableUsers = false;
-    defaultUserShell = lib.mkIf gui pkgs.zsh;
+    defaultUserShell = pkgs.zsh;
     users = {
       lenny = {
         hashedPasswordFile = config.sops.secrets."hashedPassword".path;
@@ -224,7 +226,7 @@ with specialArgs;
       };
     };
   };
-  home-manager = lib.mkIf gui {
+  home-manager = {
     extraSpecialArgs = specialArgs;
     users = {
       lenny = if server then import ./frodo/home-frodo.nix else ./home/home.nix;

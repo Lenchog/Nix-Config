@@ -12,16 +12,20 @@
     useDHCP = false;
     firewall = {
       enable = true;
-      allowedTCPPorts = [
-        80
-        443 # http
-        53 # dnsmasq
-        25565 # minecraft
-      ];
-      allowedUDPPorts = [
-        53
-        67 # blocky / dhcp
-      ];
+      interfaces."eno1" = {
+        allowedTCPPorts = [
+          80
+          443 # http
+          53 # dnsmasq
+          25565 # minecraft
+          2121
+        ];
+        allowedUDPPorts = [
+          53
+          67 # blocky / dhcp
+        ];
+      };
+      interfaces."wg0".allowedUDPPorts = [ 4242 ];
     };
     interfaces.eno1.ipv4.addresses = [
       {
@@ -65,7 +69,10 @@
         "photos.lench.org" = (
           SSL
           // {
-            locations."/".proxyPass = "http://127.0.0.1:2342/";
+            locations."/" = {
+              proxyPass = "http://[::1]:${toString config.services.immich.port}";
+              proxyWebsockets = true;
+            };
           }
         );
         "search.lench.org" = (
@@ -78,6 +85,12 @@
           SSL
           // {
             locations."/".proxyPass = "http://127.0.0.1:8384/";
+          }
+        );
+        "jellyfin.lench.org" = (
+          SSL
+          // {
+            locations."/".proxyPass = "http://127.0.0.1:8096/";
           }
         );
         "lench.org" = (
@@ -106,6 +119,7 @@
   services.dnsmasq = {
     enable = true;
     settings = {
+      interface = "eno1";
       dhcp-range = [ "192.168.0.2,192.168.0.254" ];
       dhcp-option = "option:router,192.168.0.1";
       dhcp-authoritative = true;
