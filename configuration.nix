@@ -83,7 +83,6 @@ with specialArgs;
     gamescope = {
       enable = games;
     };
-    adb.enable = laptop;
     zsh.enable = true;
     nh.enable = true;
     gamemode.enable = games;
@@ -118,7 +117,6 @@ with specialArgs;
     packages = with pkgs; [ spleen ];
   };
   boot = {
-    binfmt.emulatedSystems = lib.mkIf desktop [ "aarch64-linux" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -132,7 +130,7 @@ with specialArgs;
     kernelParams = [
       "quiet"
       "udev.log_level=0"
-      #(if desktop then "nvidia-drm.modeset=1" else {})
+      #(if desktop then "nvidia-drm.modeset=1" else " ")
     ];
     kernelPackages = pkgs.linuxPackages_zen;
   };
@@ -146,7 +144,7 @@ with specialArgs;
     };
     graphics = {
       enable = gui;
-      enable32Bit = gui;
+      enable32Bit = true;
       extraPackages =
         with pkgs;
         lib.mkIf laptop [
@@ -155,7 +153,6 @@ with specialArgs;
         ];
     };
   };
-  musnix.enable = true;
   services = {
     openssh = {
       enable = server;

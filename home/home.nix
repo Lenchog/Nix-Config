@@ -27,7 +27,6 @@ with specialArgs;
   stylix.enable = gui;
   gtk.enable = gui;
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
     inputs.stylix.homeModules.stylix
     inputs.niri.homeModules.niri
     ../modules/options.nix
@@ -41,13 +40,10 @@ with specialArgs;
     ./packages.nix
     ./zsh.nix
     ./themes.nix
-    ./nixvim.nix
     ./helix.nix
-    ./kitty.nix
     ./eww.nix
     ./mako.nix
     ./lf.nix
-    ./ghostty.nix
     ./zellij.nix
   ];
 }
