@@ -51,6 +51,12 @@ with specialArgs;
   );
   fonts.fontconfig.allowBitmaps = true;
   services.jellyfin.enable = server;
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024;
+    }
+  ];
   nix = {
     settings = {
       experimental-features = [
