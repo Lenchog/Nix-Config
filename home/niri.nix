@@ -24,7 +24,6 @@ in
         focus-ring = {
           enable = false;
         };
-        default-column-width.proportion = 0.5;
       };
       binds =
         with pkgs;
