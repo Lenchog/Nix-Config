@@ -8,15 +8,13 @@
   networking = {
     hostName = "frodo";
     dhcpcd.enable = false;
-    defaultGateway = "192.168.0.1";
-    useDHCP = false;
+    defaultGateway = "192.168.1.1";
     firewall = {
       enable = true;
       interfaces."eno1" = {
         allowedTCPPorts = [
           80
           443 # http
-          53 # dnsmasq
           25565 # minecraft
           2121
         ];
@@ -29,7 +27,7 @@
     };
     interfaces.eno1.ipv4.addresses = [
       {
-        address = "192.168.0.42";
+        address = "192.168.1.42";
         prefixLength = 24;
       }
     ];
@@ -115,23 +113,5 @@
           }
         );
       };
-  };
-  services.dnsmasq = {
-    enable = true;
-    settings = {
-      interface = "eno1";
-      dhcp-range = [ "192.168.0.2,192.168.0.254" ];
-      dhcp-option = "option:router,192.168.0.1";
-      dhcp-authoritative = true;
-      domain-needed = true;
-      bogus-priv = true;
-      no-resolv = true;
-      server = [
-        "127.0.0.1#5335"
-        "1.1.1.1"
-      ];
-      local = "/lench.org/";
-      address = "/lench.org/192.168.0.42";
-    };
   };
 }
