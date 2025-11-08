@@ -12,6 +12,7 @@
     fzf
     lsd
     ncdu
+    wl-clipboard
     # Apps
     spotify
     ldtk
