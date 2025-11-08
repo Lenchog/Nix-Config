@@ -237,18 +237,4 @@ with specialArgs;
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "24.11";
-  systemd.services = {
-    kanata-laptop = {
-      wantedBy = lib.mkForce [ "graphical.target" ];
-      unitConfig.After = [ "graphical.target" ];
-    };
-    powertop = {
-      wantedBy = lib.mkForce [ "graphical.target" ];
-      unitConfig.After = [ "graphical.target" ];
-    };
-    NetworkManager = {
-      wantedBy = lib.mkForce [ "graphical.target" ];
-      unitConfig.After = [ "graphical.target" ];
-    };
-  };
 }
