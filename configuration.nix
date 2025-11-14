@@ -194,6 +194,7 @@ with specialArgs;
   };
   networking = {
     networkmanager.enable = true;
+    nameservers = [ "192.168.1.42" ];
     hostName =
       if laptop then
         "legolas"
