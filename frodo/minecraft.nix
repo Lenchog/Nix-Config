@@ -8,42 +8,95 @@
 
 let
   inherit (inputs.nix-minecraft.lib) collectFilesAt;
-  valhelsia = pkgs.fetchzip {
-    url = "https://mediafilez.forgecdn.net/files/5529/449/Valhelsia-6-6.2.2-SERVER.zip";
-    hash = "sha256-4CL+JbrLyQralu3dQLRoS4ARIeg/v545EY0A4saPiPk=";
-    extension = "zip";
-    stripRoot = false;
-  };
   mods = pkgs.linkFarmFromDrvs "mods" (
     builtins.attrValues {
+      # Terrain & Structures
+      DungeonsAndTaverns = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/tpehi7ww/versions/bjFTHs6U/dungeons-and-taverns-v4.6.3.jar";
+        sha256 = "dJd+Uvm6073rccDDmayuLZKYw9LrDH74/gkOHpL/CAc=";
+      };
+      BetterStrongholds = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/kidLKymU/versions/jPsIaxuA/YungsBetterStrongholds-1.21.4-Fabric-5.4.0.jar";
+        sha256 = "yZ+NTrznsptLUM/RBkeKKGdp8EAtBOxyjOGgI9Oxi2Q=";
+      };
+      BetterMineshafts = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/HjmxVlSr/versions/ezSBs4dx/YungsBetterMineshafts-1.21.4-Fabric-5.4.0.jar";
+        sha256 = "Ehn2qOCku+Pu1NaCtqr9WJZgkLcNKNh+9Q7Uk1iDldY=";
+      };
+      BetterDungeons = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/o1C1Dkj5/versions/JJRT74Yl/YungsBetterDungeons-1.21.4-Fabric-5.4.0.jar";
+        sha256 = "eoGDcS5UVrjSsrau0m0Yuf/IR5cEE84TRz7rkPXipXk=";
+      };
+      BetterNetherFortresses = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/Z2mXHnxP/versions/eUEnv9r3/YungsBetterNetherFortresses-1.21.4-Fabric-3.4.1.jar";
+        sha256 = "IJkoGEGBBYr9ehJtGqZ7Ky2hMCIoBy1sl7oPO4gepok=";
+      };
+      BetterOceanMonuments = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/3dT9sgt4/versions/GArxaRHI/YungsBetterOceanMonuments-1.21.4-Fabric-4.4.0.jar";
+        sha256 = "/gzMBJhZrHgx8/tJd3Flr/NXNlfurAiWewst52jjLJA=";
+      };
+      BetterJungleTemples = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/z9Ve58Ih/versions/dF6fSxRm/YungsBetterJungleTemples-1.21.4-Fabric-3.4.0.jar";
+        sha256 = "v5tqpeyk9G2YIjTogXlbXjcvSgjjX81GDE6OSnfEmwc=";
+      };
+      BetterDesertTemples = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/XNlO7sBv/versions/W68glo4a/YungsBetterDesertTemples-1.21.4-Fabric-4.4.0.jar";
+        sha256 = "tr8BzRtCAVPRm36Ekzuy2f5dEne/86ri24WTKOESD3k=";
+      };
+      Bridges = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/Ht4BfYp6/versions/a8dqim8P/YungsBridges-1.21.4-Fabric-5.4.0.jar";
+        sha256 = "CYd7re7wAZBhnoyLP4qQON4RcyEC10/jpmFNzqD3hbw=";
+      };
+      YungsExtras = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/ZYgyPyfq/versions/qGXmN34R/YungsExtras-1.21.4-Fabric-5.4.0.jar";
+        sha256 = "qsyDNL0UqA6FmAqkb795S2xc5mPycIgAenfRcR3iRDE=";
+      };
+      # Structory = pkgs.fetchurl {
+      #   url = "https://cdn.modrinth.com/data/aKCwCJlY/versions/qm2RM1eD/Structory_1.21.x_v1.3.12.jar";
+      #   sha256 = "K/R8JXsDG1Dz/mqqumow2eMKCg6ou85j4qhd7h8WRLE=";
+      # };
+      Terralith = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/8oi3bsk5/versions/MuJMtPGQ/Terralith_1.21.x_v2.5.8.jar";
+        sha256 = "ADM6EwrDi3ucqTcACY1eAuBhK9wtNSKq2i825WAGIb8=";
+      };
+      Nullscape = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/LPjGiSO4/versions/3fv8O3xX/Nullscape_1.21.x_v1.2.14.jar";
+        sha256 = "h0nG/dplkzXlARbBjgEs34aZs3iYWcglWa8sb0Jck64=";
+      };
+      AmplifiedNether = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/wXiGiyGX/versions/wjOKbxcn/Amplified_Nether_1.21.x_v1.2.11.jar";
+        sha256 = "sSaCHm9u/KUYk7lfVgEQy0raEoYUgLEWc5hWwYAGCvM=";
+      };
       # Features
       SimpleVoiceChat = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/pl9FpaYJ/voicechat-fabric-1.21.4-2.5.26.jar";
         sha256 = "2ni2tQjMCO3jaEA1OHXoonZpGqHGVlY/9rzVsijrxVA=";
       };
-      LenientDeath = pkgs.fetchurl {
-        url = "https://cdn.modrinth.com/data/Bfi1KBJV/versions/rxsQ1aP9/lenientdeath-1.2.5%2B1.21.2.jar";
-        sha256 = "KUveYV7trHhbf5dyeXvSyDcqnZOfX0sOC4S8NYepzhU=";
+      DoubleDoors = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/JrvR9OHr/versions/oqgL7jds/doubledoors-1.21.4-7.0.jar";
+        sha256 = "SsUhX9GTZn9cg4L5Y/IHfvJi/wBjTJ91vkp5ri9QwUg=";
       };
-      # Trading = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/x5iQ3NM5/versions/ImLX0SOZ/toms_trading_network-fabric-1.21.4-0.3.3.jar"; sha256 = "WC7Hr+YdzTpMS657F0YCunckZ/heAaUzsQbiZGSVACw="; };
       Appleskin = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/EsAfCjCV/versions/cHQjeYVS/appleskin-fabric-mc1.21.3-3.0.6.jar";
         sha256 = "+PYRdG34jxc3tip2YVo2b0KjMXMOoW25fFLW9VQMWKs=";
       };
       ViaVersion = pkgs.fetchurl {
-        url = "https://cdn.modrinth.com/data/P1OZGk5p/versions/cdC9vQSF/ViaVersion-5.3.2.jar";
-        sha256 = "9JR803K0Djn1sywlPD+kAz4pGqhwsu0vitNfY0fLMmA=";
+        url = "https://cdn.modrinth.com/data/P1OZGk5p/versions/sVahWBKF/ViaVersion-5.5.1.jar";
+        sha256 = "Iit8Jo0CErea7UWduAEucBRZfI70QzcSIVHl9uC7KGg=";
+      };
+      DeathCount = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/JaEZg1D1/versions/YQjXpK5d/death-count-1.0.jar";
+        sha256 = "RmmyvPxZoDDggdPUmF5roWjeI30hSuq1PdZeq0L2HPA=";
+      };
+
+      OpenPartiesAndClaims = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/gF3BGWvG/versions/XWAUhwUo/open-parties-and-claims-fabric-1.21.4-0.25.8.jar";
+        sha256 = "DA9LbiwwUUshBxVimVl2pgqP8KN2vLyZ+l7U7vZf+Sw=";
       };
       ViveCraft = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/wGoQDPN5/versions/GdTUTu77/vivecraft-1.21.4-1.2.5-fabric.jar";
         sha256 = "KESfS7od8CSyeWTajzB9x6CCDAvFiZOvviZE8JV2xpc=";
       };
-      /*
-        bluemap = pkgs.fetchurl {
-        							url = "";
-        							sha256 = "";
-        						};
-      */
       HorseBuff = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/IrrG0G8l/versions/wNa4026m/HorseBuff-1.21.4-2.2.1.jar";
         sha256 = "GklKdsoaNrUsgEmI/B4t3xdWKscANn86ew+58zjO51I=";
@@ -52,7 +105,6 @@ let
         url = "https://cdn.modrinth.com/data/cRci7UZp/versions/JT0fNDm0/Crops-Love-Rain-2.4.1.jar";
         sha256 = "YLybl203ESdvZ31C/vMTBDTFKZCguevU86lBbKsTofM=";
       };
-      # DistantHorizons = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/uCdwusMi/versions/DTFSZmMF/DistantHorizons-neoforge-fabric-2.3.0-b-1.21.4.jar"; sha256 = "FqV3dvw8VD4DM+b7cP49/zeh2jUtyQmkDtodQQLt948="; };
       Discord = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/rbJ7eS5V/versions/hd62ja8J/dcintegration-fabric-MC1.21.3-3.1.0.1.jar";
         sha256 = "5Us8Ig8Nwv9zFLQx8X/C7cTz/O0uTDjeztYMAXBWK0Q=";
@@ -74,6 +126,14 @@ let
         url = "https://cdn.modrinth.com/data/sml2FMaA/versions/dwTZzfS4/antixray-fabric-1.4.9%2B1.21.4.jar";
         sha256 = "zv1giJdIOZSRnvxo4fLulT7UkTnDspE4CMNpRmn7rSY=";
       };
+      SecureSeed = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/mj5Qr8TC/versions/WzYSWs2b/secure-seed-reborn-1.0.1.jar";
+        sha256 = "i9jNhJS6NiGZec5vUG2BP4ZrehVkoLQmQPXHlAhVkrQ=";
+      };
+      SeedGuard = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/7e8ji5y2/versions/uLrh8ZKV/seedguard%2B1.20.5-rc3-1.0.1.jar";
+        sha256 = "pDPYeWXFEWkJUG5cyYqc4plGckJccOvdoiE6rI3xi74=";
+      };
       Vanish = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/UL4bJFDY/versions/sOVWUHwB/vanish-1.5.12%2B1.21.4.jar";
         sha256 = "kDswxMVQv0mWfA2VEOMEGlaFZZzKjIH2jqO4i5OEt7g=";
@@ -81,6 +141,10 @@ let
       InvView = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/jrDKjZP7/versions/LNGVFn7g/InvView-1.4.15-1.20.5%2B.jar";
         sha256 = "fsEUjewyHKVg/0RJcpTdl0ClWSRj3ApU8Qv+AxIFZJE=";
+      };
+      Ledger = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/LVN9ygNV/versions/pzDwE16E/ledger-1.3.7-fix.jar";
+        sha256 = "UIhf8lO639dJdlYeyDUTRMcGblZ8TX+k8WZR9fHClu8=";
       };
 
       # Performance
@@ -93,8 +157,8 @@ let
         sha256 = "A8kKcLIzQWvZZziUm+kJ0eytrHQ/fBVZQ18uQXN9Qf0=";
       };
       FerriteCore = pkgs.fetchurl {
-        url = "https://cdn.modrinth.com/data/uXXizFIs/versions/ULSumfl4/ferritecore-6.0.0-forge.jar";
-        sha256 = "Aej+nkvBWH5pLA0yrOcq/rKU1dXBo7eo2WRfgCuQYlU=";
+        url = "https://cdn.modrinth.com/data/uXXizFIs/versions/IPM0JlHd/ferritecore-7.1.1-fabric.jar";
+        sha256 = "sha256-DdXpIDVSAk445zoPW0aoLrZvAxiyMonGhCsmhmMnSnk=";
       };
       Krypton = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/fQEb0iXm/versions/Acz3ttTp/krypton-0.2.8.jar";
@@ -129,9 +193,25 @@ let
         url = "https://cdn.modrinth.com/data/YlKdE5VK/versions/Niu0KrUK/ViaFabric-0.4.17%2B91-main.jar";
         sha256 = "gJQYHj9O2IZ7iKkZcLbuDiEmGIogHipFmJR/8b9lpPM=";
       };
+      YungsApi = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/Ua7DFN59/versions/U4m2SXEP/YungsApi-1.21.4-Fabric-5.4.0.jar";
+        sha256 = "Wpcr13WfPptga4V4yySqVPcA/fAO/e67azHVSUtFOeI=";
+      };
+      Collective = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/e0M1UDsY/versions/I5jY2gQ2/collective-1.21.4-8.3.jar";
+        sha256 = "mIeBy9zRcRUZlskk3BDSA518tyLQ04FwCRpDsboMhGo=";
+      };
+      FabricLanguageKotlin = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/LcgnDDmT/fabric-language-kotlin-1.13.7%2Bkotlin.2.2.21.jar";
+        sha256 = "d5UZY+3V19N+5PF0431GqHHkW5c0JvO0nWclyBm0uPI=";
+      };
       ForgeConfigAPIPort = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/ohNO6lps/versions/lTrPTmMK/ForgeConfigAPIPort-v21.4.1-1.21.4-Fabric.jar";
         sha256 = "Hh8uPw8DhbxwXDyrnvcaUyriKEC/ab9x1Kulj1lFbdY=";
+      };
+      ClothConfig = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/9s6osm5g/versions/TJ6o2sr4/cloth-config-17.0.144-fabric.jar";
+        sha256 = "H9oMSonU8HXlGz61VwpJEocGVtJS2AbqMJHSu8Bngeo=";
       };
     }
   );
@@ -141,95 +221,26 @@ in
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
   nixpkgs.config = {
     allowUnfree = true;
-    allowInsecure = true;
-    permittedInsecurePackages = [
-      "freeimage-3.18.0-unstable-2024-04-18"
-    ];
   };
   services.minecraft-servers = {
     enable = true;
     eula = true;
     dataDir = "/var/lib/minecraft";
     servers = {
-      final-clan = {
-        enable = false;
-        package = { };
+      season-4 = {
+        enable = true;
+        package = pkgs.fabricServers.fabric-1_21_4;
         serverProperties = {
           server-port = 25564;
           difficulty = "hard";
-          motd = "Season 3";
+          motd = "Season 4";
+          max-world-size = 2500;
           online-mode = false;
           white-list = true;
           enable-command-block = true;
         };
         symlinks."mods" = mods;
         jvmOpts = "-Xms4G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
-      };
-      valhelsia = {
-        enable = false;
-        package = pkgs.callPackage ./forge-server.nix { };
-        serverProperties = {
-          server-port = 25564;
-          difficulty = "hard";
-          motd = "Season 2 | VALHELSIA";
-          world-type = "biomesoplenty";
-          online-mode = false;
-          max-tick-time = -1;
-        };
-        files = {
-          defaultconfigs = "${valhelsia}/defaultconfigs";
-          kubejs = "${valhelsia}/kubejs";
-          resourcepacks = "${valhelsia}/resourcepacks";
-          config = "${valhelsia}/config";
-          "config/Discord-Integration.toml".value = {
-            general = {
-              #botToken = lib.fileContents config.sops.secrets."minecraft-bot-token".path;
-              botToken = config.sops.placeholder."minecraft-bot-token";
-              botChannel = "1357233514977951754";
-            };
-            commands.adminRoleIDs = [ "1357235560359399477" ];
-          };
-        };
-        symlinks = collectFilesAt valhelsia "mods" // {
-          "server-icon.png" = "${valhelsia}/server-icon.png";
-          "mods/neth-horse.jar" = pkgs.fetchurl {
-            url = "https://cdn.modrinth.com/data/nDFVOeq7/versions/bkAAaHJp/netherite_horse_armor-forge-1.20.1-1.0.4.jar";
-            sha256 = "NIijtWvlQ0HtgawDKy8EezzHnQlm2sZRtEQP0T3N5zY=";
-          };
-          "mods/grafana.jar" = pkgs.fetchurl {
-            url = "https://github.com/cpburnz/minecraft-prometheus-exporter/releases/download/1.20.1-forge-1.0.0/Prometheus-Exporter-1.20.1-forge-1.0.0.jar";
-            sha256 = "CgkXOqcGU9w57qsvFSKMPh7CSvYRNoP6bnYm+L8BMoA=";
-          };
-          #"mods/vanish.jar" = pkgs.fetchurl { url = ""; sha256 = ""; };
-          #"mods/inv-view.jar" = pkgs.fetchurl { url = ""; sha256 = ""; };
-          "mods/vive-craft.jar" = pkgs.fetchurl {
-            url = "https://cdn.modrinth.com/data/wGoQDPN5/versions/lrjgB0IC/vivecraft-1.20.1-1.2.5-forge.jar";
-            sha256 = "hGVo5+GscP8zWIXZzEE7W7lHhUDuQPd7Wp4IEL5pEm0=";
-          };
-          #"mods/easyauth.jar" = pkgs.fetchurl { url = ""; sha256 = ""; };
-          "mods/discord.jar" = pkgs.fetchurl {
-            url = "https://cdn.modrinth.com/data/rbJ7eS5V/versions/ILJrSvYW/dcintegration-forge-3.0.7.1-1.20.1.jar";
-            sha256 = "jan7xTIim01VtIV8f8KN7ThcpuYh6Vujk6WEqt73ho0=";
-          };
-          "mods/ars-instrumentum.jar" = pkgs.fetchurl {
-            url = "https://mediafilez.forgecdn.net/files/5047/343/ars_instrumentum-1.20.1-4.1.0.jar";
-            sha256 = "H/eSNkC4DSdyarhkk3sTQse7+x1CQYXpz8slyliU0rU=";
-          };
-        };
-        jvmOpts = "-Xms4G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
-      };
-      new-clan = {
-        enable = false;
-        package = pkgs.fabricServers.fabric-1_21_4;
-        serverProperties = {
-          server-port = 25566;
-          difficulty = "hard";
-          motd = "Arvion ♥";
-          online-mode = false;
-          white-list = true;
-        };
-        symlinks."mods" = mods;
-        jvmOpts = "-Xms1G -Xmx2G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
       };
     };
   };
