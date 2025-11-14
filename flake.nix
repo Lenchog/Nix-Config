@@ -114,7 +114,7 @@
         */
         frodo = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs pkgs;
+            inherit inputs;
             gui = false;
             laptop = false;
             desktop = false;
