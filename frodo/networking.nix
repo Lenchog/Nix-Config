@@ -7,7 +7,6 @@
 {
   networking = {
     hostName = "frodo";
-    dhcpcd.enable = false;
     defaultGateway = "192.168.1.1";
     firewall = {
       enable = true;
