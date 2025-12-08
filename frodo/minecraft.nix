@@ -8,6 +8,20 @@
 
 let
   inherit (inputs.nix-minecraft.lib) collectFilesAt;
+  gtnh = pkgs.fetchzip {
+    url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_2.8.1_Server_Java_17-25.zip";
+    stripRoot = false;
+    sha256 = "PjLoBd+WyUTYJM1lu+/hOXdpyvZMsBJyLmWRievytFE=";
+    postFetch = ''
+      cd "$out"
+      rm -rf *.json changelog*.md eula.txt server.properties startserver*.bat startserver*.sh
+      sed -i 's/B:chunk_claiming=false/B:chunk_claiming=true/g' serverutilities/serverutilities.cfg
+    '';
+  };
+  jvmOpts = "-Xms6144M -Xmx6144M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
+  gtnhServer = pkgs.writeShellScriptBin "minecraft-server" ''
+    exec ${pkgs.jre_headless}/bin/java $@ @${gtnh}/java9args.txt -jar ${gtnh}/lwjgl3ify-forgePatches.jar nogui
+  '';
   mods = pkgs.linkFarmFromDrvs "mods" (
     builtins.attrValues {
       # Terrain & Structures
@@ -227,8 +241,39 @@ in
     eula = true;
     dataDir = "/var/lib/minecraft";
     servers = {
-      season-4 = {
+      gtnh = {
         enable = true;
+        package = gtnhServer;
+        symlinks = {
+          "libraries" = "${gtnh}/libraries";
+          "server-icon.png" = "${gtnh}/server-icon.png";
+          "serverutilities" = "${gtnh}/serverutilities";
+          "mods" = "${gtnh}/mods";
+        };
+        files = {
+          "config" = "${gtnh}/config";
+        };
+        jvmOpts = jvmOpts;
+        serverProperties = {
+          allow-flight = true;
+          announce-player-achievements = true;
+          difficulty = 3;
+          enable-command-block = true;
+          level-name = "world";
+          level-type = "rwg";
+          max-build-height = 256;
+          max-players = 5;
+          motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.8.1 \\u00a7e[Whitelist]";
+          op-permission-level = 4;
+          server-name = "GT: New Horizons Server";
+          server-port = 25564;
+          spawn-protection = 1;
+          view-distance = 8;
+          white-list = true;
+        };
+      };
+      season-4 = {
+        enable = false;
         package = pkgs.fabricServers.fabric-1_21_4;
         serverProperties = {
           server-port = 25564;
@@ -240,7 +285,7 @@ in
           enable-command-block = true;
         };
         symlinks."mods" = mods;
-        jvmOpts = "-Xms4G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
+        jvmOpts = jvmOpts;
       };
     };
   };
