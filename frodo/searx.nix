@@ -41,6 +41,14 @@
           name = "dictzone";
           disabled = true;
         }
+        {
+          name = "startpage";
+          disabled = true;
+        }
+        {
+          name = "wikipedia";
+          disabled = true;
+        }
       ];
     };
   };
