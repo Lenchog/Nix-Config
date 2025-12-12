@@ -9,7 +9,6 @@ with specialArgs;
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    inputs.lix-module.nixosModules.default
     inputs.musnix.nixosModules.musnix
     inputs.nix-topology.nixosModules.default
     (
@@ -34,6 +33,7 @@ with specialArgs;
         ./disko-config.nix
         ./frodo/hardware-configuration.nix
         ./frodo/minecraft.nix
+        ./frodo/tmodloader.nix
         ./frodo/garf.nix
         ./frodo/searx.nix
         ./frodo/blocky.nix
@@ -44,19 +44,18 @@ with specialArgs;
         ./frodo/immich.nix
         ./frodo/vaultwarden.nix
         ./frodo/syncthing.nix
-        #./frodo/wireguard.nix
       ]
     else
       [ ]
   );
   fonts.fontconfig.allowBitmaps = true;
-  services.jellyfin.enable = server;
   swapDevices = [
     {
       device = "/var/lib/swapfile";
       size = 32 * 1024;
     }
   ];
+
   nix = {
     settings = {
       experimental-features = [
@@ -146,7 +145,7 @@ with specialArgs;
     nvidia = lib.mkIf desktop {
       open = false;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     graphics = {
       enable = gui;
@@ -160,6 +159,7 @@ with specialArgs;
     };
   };
   services = {
+    jellyfin.enable = server;
     openssh = {
       enable = server;
       ports = [ 2121 ];
@@ -237,5 +237,6 @@ with specialArgs;
     };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.11";
 }

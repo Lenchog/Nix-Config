@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     mangohud # Overlay, like MSI Afterburner
     git

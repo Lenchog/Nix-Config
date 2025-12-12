@@ -16,6 +16,7 @@
       flake = false;
     };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    nix-tmodloader.url = "github:/andOrlando/nix-tmodloader";
     musnix.url = "github:musnix/musnix";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -69,7 +70,7 @@
       nixosConfigurations = {
         legolas = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs pkgs;
+            inherit inputs;
             gui = true;
             laptop = true;
             desktop = false;
@@ -82,7 +83,7 @@
         };
         aragorn = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs pkgs;
+            inherit inputs;
             gui = true;
             laptop = false;
             desktop = true;
@@ -91,9 +92,7 @@
             vm = false;
             impermanence = false;
           };
-          modules = [
-            ./configuration.nix
-          ];
+          modules = [ ./configuration.nix ];
         };
         /*
           vm = nixpkgs.lib.nixosSystem {
