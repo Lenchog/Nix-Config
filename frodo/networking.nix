@@ -12,10 +12,11 @@
       enable = true;
       interfaces."eno1" = {
         allowedTCPPorts = [
-          80
-          443 # http
+          80 # http
+          443 # https
           25565 # minecraft
-          2121
+          25564 # also minecraft idk why we need this
+          2121 # ssh
         ];
         allowedUDPPorts = [
           53
