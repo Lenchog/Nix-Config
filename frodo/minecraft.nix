@@ -8,20 +8,7 @@
 
 let
   inherit (inputs.nix-minecraft.lib) collectFilesAt;
-  gtnh = pkgs.fetchzip {
-    url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_2.8.1_Server_Java_17-25.zip";
-    stripRoot = false;
-    sha256 = "PjLoBd+WyUTYJM1lu+/hOXdpyvZMsBJyLmWRievytFE=";
-    postFetch = ''
-      cd "$out"
-      rm -rf *.json changelog*.md eula.txt server.properties startserver*.bat startserver*.sh
-      sed -i 's/B:chunk_claiming=false/B:chunk_claiming=true/g' serverutilities/serverutilities.cfg
-    '';
-  };
-  jvmOpts = "-Xms6144M -Xmx6144M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
-  gtnhServer = pkgs.writeShellScriptBin "minecraft-server" ''
-    exec ${pkgs.jre_headless}/bin/java $@ @${gtnh}/java9args.txt -jar ${gtnh}/lwjgl3ify-forgePatches.jar nogui
-  '';
+  myJvmOpts = "-Xms4096M -Xmx4096M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
   mods = pkgs.linkFarmFromDrvs "mods" (
     builtins.attrValues {
       # Terrain & Structures
@@ -130,6 +117,14 @@ let
       FabricExporter = pkgs.fetchurl {
         url = "https://cdn.modrinth.com/data/dbVXHSlv/versions/phBInZSv/fabricexporter-1.0.14.jar";
         sha256 = "xQqW4LQ/hddDKZWCNwPXJgP2L2up9oHJN64pGbSzIdM=";
+      };
+      EasyWhitelist = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/LODybUe5/versions/9OoxSFQz/easywhitelist-1.1.0.jar";
+        sha256 = "gon45yHrNvgbwTt7bK1N9r0wpR91j5ynAlF+YQzwzQA=";
+      };
+      LenientDeath = pkgs.fetchurl {
+        url = "https://cdn.modrinth.com/data/Bfi1KBJV/versions/rxsQ1aP9/lenientdeath-1.2.5%2B1.21.2.jar";
+        sha256 = "KUveYV7trHhbf5dyeXvSyDcqnZOfX0sOC4S8NYepzhU=";
       };
       # Anti cheat
       EasyAuth = pkgs.fetchurl {
@@ -241,20 +236,16 @@ in
     eula = true;
     dataDir = "/var/lib/minecraft";
     servers = {
-      gtnh = {
+      gtnh = rec {
         enable = true;
-        package = gtnhServer;
-        symlinks = {
-          "libraries" = "${gtnh}/libraries";
-          "server-icon.png" = "${gtnh}/server-icon.png";
-          "serverutilities" = "${gtnh}/serverutilities";
-          "mods" = "${gtnh}/mods";
-        };
+        package = pkgs.callPackage ./gtnh.nix { };
         files = {
-          "config" = "${gtnh}/config";
+          config = "${package}/lib/config";
+          serverutilities = "${package}/lib/serverutilities";
         };
-        jvmOpts = jvmOpts;
+        jvmOpts = myJvmOpts;
         serverProperties = {
+          online-mode = false;
           allow-flight = true;
           announce-player-achievements = true;
           difficulty = 3;
@@ -263,7 +254,8 @@ in
           level-type = "rwg";
           max-build-height = 256;
           max-players = 5;
-          motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.8.1 \\u00a7e[Whitelist]";
+          motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.8.2 \\u00a7e[Whitelist]";
+          hide-online-players = true;
           op-permission-level = 4;
           server-name = "GT: New Horizons Server";
           server-port = 25564;
@@ -285,7 +277,7 @@ in
           enable-command-block = true;
         };
         symlinks."mods" = mods;
-        jvmOpts = jvmOpts;
+        jvmOpts = myJvmOpts;
       };
     };
   };
