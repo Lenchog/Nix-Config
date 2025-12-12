@@ -21,7 +21,12 @@
     webcord
     pavucontrol
     audacity
-    prismlauncher
+    (prismlauncher.override {
+      jdks = [
+        pkgs.jdk25
+        pkgs.jdk8
+      ];
+    })
     hyprshot
     nix-search-cli
     easyeffects
