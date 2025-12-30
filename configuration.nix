@@ -55,6 +55,7 @@ with specialArgs;
       size = 32 * 1024;
     }
   ];
+  musnix.enable = true;
 
   nix = {
     settings = {
@@ -145,7 +146,7 @@ with specialArgs;
     nvidia = lib.mkIf desktop {
       open = false;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
     };
     graphics = {
       enable = gui;
@@ -222,6 +223,7 @@ with specialArgs;
           "networkmanager"
           "wheel"
           "dialout"
+          "audio"
         ];
         home = "/home/lenny";
       };
