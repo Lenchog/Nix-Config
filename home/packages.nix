@@ -15,6 +15,10 @@
     ncdu
     wl-clipboard
     # Apps
+    cemu
+    ukmm
+    reaper
+    vital
     spotify
     ldtk
     bottom
@@ -24,7 +28,10 @@
     audacity
     (prismlauncher.override {
       jdks = [
-        pkgs.jdk25
+        pkgs.javaPackages.compiler.temurin-bin.jdk-25
+        pkgs.javaPackages.compiler.temurin-bin.jdk-21
+        pkgs.jdk21
+        pkgs.jdk17
         pkgs.jdk8
       ];
     })
