@@ -25,11 +25,11 @@ let
 in
 stdenvNoCC.mkDerivation rec {
   pname = "gt-new-horizons";
-  version = "2.8.2";
+  version = "2.8.4";
 
   src = fetchzip {
     url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${version}_Server_Java_17-25.zip";
-    hash = "sha256-NLFt8D480lGazh5xV/CHHWKuMU/SExMlBbuyohkbwcM=";
+    hash = "sha256-WgTv53dNuH9jZ3L4+STDB/ydRjkWd1iVU7Mzpsp/Pls=";
     stripRoot = false;
   };
 
