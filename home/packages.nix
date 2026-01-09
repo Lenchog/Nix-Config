@@ -1,8 +1,32 @@
 { pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      ukmm = prev.ukmm.overrideAttrs (oldAttrs: rec {
+        version = "0.16.0";
+        src = prev.fetchFromGitHub {
+          owner = "GingerAvalanche";
+          repo = "ukmm";
+          tag = "v0.16.0";
+          hash = "sha256-jnZJXWni8UpdnEvYff1rtAQPrc3l7c/VLoyLGUrQTU4=";
+        };
+        cargoDeps = final.rustPlatform.fetchCargoVendor {
+          inherit src;
+          hash = "sha256-vNpKaFMeKO2EM7XQ4rgVRJwgVBQueMrJ5xN8eD3EQNk=";
+        };
+        # cargoDeps = oldAttrs.cargoDeps.overrideAttrs (
+        #   prev.lib.const {
+        #     name = "${oldAttrs.pname}-vendor.tar.gz";
+        #     inherit src;
+        #     outputHash = "sha256-QCEyl5FZqECYYb5eRm8mn+R6owt+CLQwCq/AMMPygE0=";
+        #   }
+        # );
+      });
+    })
+  ];
   home.packages = with pkgs; [
-    mangohud # Overlay, like MSI Afterburner
+    mangohud
     git
     gh
     # Utilities
