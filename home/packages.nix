@@ -47,7 +47,7 @@
     ldtk
     bottom
     obsidian
-    webcord
+    vesktop
     pavucontrol
     audacity
     (prismlauncher.override {
