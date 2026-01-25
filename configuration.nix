@@ -72,6 +72,13 @@ with specialArgs;
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
   programs = {
+    ssh.extraConfig = ''
+      Host frodo
+        Hostname lench.org
+        Port 2121
+        User lenny
+        IdentityFile ${config.sops.secrets."ssh-private-key".path}
+    '';
     uwsm = {
       enable = gui;
       waylandCompositors = {
