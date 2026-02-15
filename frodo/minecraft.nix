@@ -8,7 +8,7 @@
 
 let
   inherit (inputs.nix-minecraft.lib) collectFilesAt;
-  myJvmOpts = "-Xms4096M -Xmx4096M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
+  myJvmOpts = "-Xms5G -Xmx5G -XX:+UseCompactObjectHeaders -XX:+UseZGC";
   mods = pkgs.linkFarmFromDrvs "mods" (
     builtins.attrValues {
       # Terrain & Structures
@@ -254,7 +254,7 @@ in
           level-type = "rwg";
           max-build-height = 256;
           max-players = 5;
-          motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.8.2 \\u00a7e[Whitelist]";
+          motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.8.4 \\u00a7e[Whitelist]";
           hide-online-players = true;
           op-permission-level = 4;
           server-name = "GT: New Horizons Server";

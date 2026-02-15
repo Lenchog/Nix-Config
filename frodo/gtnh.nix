@@ -6,6 +6,7 @@
   groovy,
   makeWrapper,
   writeShellScript,
+  pkgs,
   ...
 }:
 let
@@ -32,6 +33,8 @@ stdenvNoCC.mkDerivation rec {
     hash = "sha256-WgTv53dNuH9jZ3L4+STDB/ydRjkWd1iVU7Mzpsp/Pls=";
     stripRoot = false;
   };
+
+  jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
 
   nativeBuildInputs = [
     makeWrapper
