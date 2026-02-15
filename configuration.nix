@@ -41,7 +41,6 @@ with specialArgs;
         ./frodo/grafana.nix
         ./modules/sops.nix
         ./frodo/restic.nix
-        ./frodo/immich.nix
         ./frodo/vaultwarden.nix
         ./frodo/syncthing.nix
       ]
@@ -56,6 +55,9 @@ with specialArgs;
     }
   ];
   musnix.enable = true;
+  environment.variables = {
+    DISPLAY = ":0";
+  };
 
   nix = {
     settings = {
