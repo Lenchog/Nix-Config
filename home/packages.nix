@@ -39,8 +39,6 @@
     ncdu
     wl-clipboard
     # Apps
-    cemu
-    ukmm
     reaper
     vital
     spotify
@@ -62,5 +60,9 @@
     hyprshot
     nix-search-cli
     easyeffects
+    wineWowPackages.yabridge
+    winetricks
+    yabridge
+    yabridgectl
   ];
 }
