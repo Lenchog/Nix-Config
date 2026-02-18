@@ -10,7 +10,6 @@ with specialArgs;
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.musnix.nixosModules.musnix
-    inputs.nix-topology.nixosModules.default
     (
       if desktop then
         import ./archive/machines/aragorn/hardware-configuration-aragorn.nix
@@ -107,10 +106,10 @@ with specialArgs;
       package = pkgs.steam.override {
         extraPkgs =
           pkgs: with pkgs; [
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
+            libxcursor
+            libxi
+            libxinerama
+            libxscrnsaver
             libpng
             libpulseaudio
             libvorbis
@@ -122,10 +121,6 @@ with specialArgs;
     };
   };
   hardware.steam-hardware.enable = games;
-  powerManagement = {
-    enable = laptop;
-    powertop.enable = laptop;
-  };
   console = {
     earlySetup = true;
     font = "${pkgs.spleen}/share/consolefonts/spleen-16x32.psfu";
@@ -160,15 +155,20 @@ with specialArgs;
     graphics = {
       enable = gui;
       enable32Bit = true;
-      extraPackages =
-        with pkgs;
-        lib.mkIf laptop [
-          intel-media-driver
-          intel-compute-runtime
-        ];
     };
   };
+  powerManagement = {
+    enable = laptop;
+    powertop.enable = laptop;
+  };
   services = {
+    system76-scheduler.settings.cfsProfiles.enable = true;
+    tlp = {
+      enable = laptop;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_BAT = "balanced";
+      };
+    };
     jellyfin.enable = server;
     openssh = {
       enable = server;
@@ -189,8 +189,6 @@ with specialArgs;
     fail2ban.enable = server;
     getty.autologinUser = lib.mkIf vm "lenny";
     blueman.enable = gui;
-    tlp.enable = laptop;
-    thermald.enable = laptop;
     kanata.enable = laptop;
     pipewire = {
       enable = gui;
