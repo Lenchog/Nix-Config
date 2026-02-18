@@ -60,9 +60,5 @@
     hyprshot
     nix-search-cli
     easyeffects
-    wineWowPackages.yabridge
-    winetricks
-    yabridge
-    yabridgectl
   ];
 }
