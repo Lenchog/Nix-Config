@@ -92,7 +92,6 @@ in
         3222493606 # Luminance
         3446119263 # tPackBuilder
         3207928342 # Frenetic
-        2840594640 # Lag Remover
       ];
     };
   };
