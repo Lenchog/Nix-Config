@@ -1,6 +1,6 @@
+{ config, pkgs, ... }:
 {
   flake.modules.nixos.users = {
-
     users = {
       mutableUsers = false;
       defaultUserShell = pkgs.zsh;
@@ -25,6 +25,5 @@
         };
       };
     };
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   };
 }
