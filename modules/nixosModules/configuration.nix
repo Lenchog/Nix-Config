@@ -8,28 +8,6 @@
       ...
     }:
     {
-      imports = [ inputs.home-manager.nixosModules.home-manager ];
-      home-manager = {
-        # useGlobalPkgs = true;
-        # extraSpecialArgs.hasGlobalPkgs = true;
-        users.lenny.imports = with self.modules.homeManager; [
-          base
-          packages
-          eww
-          fastfetch
-          firefox
-          foot
-          git
-          helix
-          lf
-          niri
-          mako
-          stylix
-          wofi
-          zoxide
-          zsh
-        ];
-      };
       fileSystems."/" = {
         device = "/dev/disk/by-label/NIXROOT";
         fsType = "ext4";
@@ -39,7 +17,6 @@
         device = "/dev/disk/by-label/NIXBOOT";
         fsType = "vfat";
       };
-      networking.useDHCP = lib.mkDefault true;
       fonts.fontconfig.allowBitmaps = true;
       swapDevices = [
         {
@@ -60,43 +37,9 @@
           trusted-users = [ "@wheel" ];
         };
       };
-      time.timeZone = "Australia/Sydney";
-      i18n.defaultLocale = "en_AU.UTF-8";
       programs = {
-        ssh.extraConfig = ''
-          Host frodo
-            Hostname lench.org
-            Port 2121
-            User lenny
-            IdentityFile ${config.sops.secrets."ssh-private-key".path}
-        '';
         zsh.enable = true;
         nh.enable = true;
-      };
-      console = {
-        earlySetup = true;
-        font = "${pkgs.spleen}/share/consolefonts/spleen-16x32.psfu";
-        packages = with pkgs; [ spleen ];
-      };
-      boot = {
-        loader = {
-          systemd-boot.enable = true;
-          efi.canTouchEfiVariables = true;
-          timeout = lib.mkForce null;
-        };
-        consoleLogLevel = 0;
-        initrd = {
-          verbose = false;
-          availableKernelModules = [
-            "xhci_pci"
-            "nvme"
-          ];
-        };
-        kernelParams = [
-          "quiet"
-          "udev.log_level=0"
-        ];
-        kernelPackages = pkgs.linuxPackages_zen;
       };
       systemd.services.NetworkManager-wait-online.enable = false;
       services = {
@@ -106,10 +49,6 @@
           nssmdns4 = true;
           openFirewall = true;
         };
-      };
-      networking = {
-        networkmanager.enable = true;
-        nameservers = [ "192.168.1.42" ];
       };
       users = {
         mutableUsers = false;

@@ -14,6 +14,9 @@ in
       modules = with nix; [
         base
         gui
+        boot
+        homeManager
+        networking
         syncthing
         legolas
         kanata
