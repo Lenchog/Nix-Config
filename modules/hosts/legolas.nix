@@ -16,7 +16,7 @@ in
         gui
         boot
         fileSystems
-        nix
+        nix-conf
         users
         homeManager
         networking
