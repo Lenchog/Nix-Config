@@ -23,10 +23,11 @@
         ];
         kernelPackages = pkgs.linuxPackages_zen;
       };
-      console = {
+      fonts.fontconfig.allowBitmaps = true;
+      console = with pkgs; {
         earlySetup = true;
-        font = "${pkgs.spleen}/share/consolefonts/spleen-16x32.psfu";
-        packages = with pkgs; [ spleen ];
+        font = "${spleen}/share/consolefonts/spleen-16x32.psfu";
+        packages = [ spleen ];
       };
     };
 }

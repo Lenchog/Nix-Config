@@ -15,6 +15,9 @@ in
         base
         gui
         boot
+        fileSystems
+        nix
+        users
         homeManager
         networking
         syncthing

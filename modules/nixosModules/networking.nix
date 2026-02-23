@@ -19,5 +19,14 @@
         User lenny
         IdentityFile ${config.sops.secrets."ssh-private-key".path}
     '';
+    systemd.services.NetworkManager-wait-online.enable = false;
+    services = {
+      printing.enable = true;
+      avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
+    };
   };
 }
