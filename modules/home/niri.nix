@@ -6,21 +6,19 @@
       startup =
         with pkgs;
         writeShellScriptBin "startup" ''
-                ${uwsm}/bin/uwsm app -- ${swaybg}/bin/swaybg -m fill -i ${config.stylix.image} &
-                ${uwsm}/bin/uwsm app -- ${eww}/bin/eww open bar &
-          			${xwayland-satellite}/bin/xwayland-satellite
+          ${uwsm}/bin/uwsm app -- ${swaybg}/bin/swaybg -m fill -i ${config.stylix.image} &
+          ${uwsm}/bin/uwsm app -- ${eww}/bin/eww open bar
         '';
     in
     {
       imports = [ inputs.niri.homeModules.niri ];
+      nixpkgs.overlays = [ inputs.niri.overlays.niri ];
       programs.niri = {
         enable = true;
+        package = pkgs.niri-unstable;
         settings = {
           prefer-no-csd = true;
           spawn-at-startup = [ { command = [ "${startup}/bin/startup" ]; } ];
-          environment = {
-            DISPLAY = ":0";
-          };
           animations = {
             slowdown = 0.5;
           };

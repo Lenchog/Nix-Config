@@ -7,9 +7,6 @@
         inputs.musnix.nixosModules.musnix
       ];
       musnix.enable = true;
-      environment.variables = {
-        DISPLAY = ":0";
-      };
       programs = {
         uwsm = {
           enable = true;
