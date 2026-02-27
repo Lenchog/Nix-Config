@@ -6,7 +6,10 @@
       programs.helix = with pkgs; {
         enable = true;
         defaultEditor = true;
-        extraPackages = [ inputs.nil ];
+        extraPackages = [
+          inputs.nil
+          pkgs.pylyzer
+        ];
         settings = {
           theme = lib.mkForce "t_catppuccin_mocha";
           editor = {
@@ -40,6 +43,11 @@
               name = "rust";
               auto-format = true;
               language-servers = [ "rust-analyzer" ];
+            }
+            {
+              name = "python";
+              auto-format = true;
+              language-servers = [ "pylyzer" ];
             }
           ];
           language-server.rust-analyzer.config.check = {
