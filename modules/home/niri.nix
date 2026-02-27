@@ -20,7 +20,7 @@
           prefer-no-csd = true;
           spawn-at-startup = [ { command = [ "${startup}/bin/startup" ]; } ];
           animations = {
-            slowdown = 0.5;
+            slowdown = 0.4;
           };
           layout = {
             gaps = 0;
