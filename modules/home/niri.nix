@@ -16,10 +16,10 @@
       programs.niri = {
         enable = true;
         package = pkgs.niri-unstable;
-        environment = {
-          DISPLAY = ":0";
-        };
         settings = {
+          environment = {
+            DISPLAY = ":0";
+          };
           prefer-no-csd = true;
           spawn-at-startup = [ { command = [ "${startup}/bin/startup" ]; } ];
           animations = {
