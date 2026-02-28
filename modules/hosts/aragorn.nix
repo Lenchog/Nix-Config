@@ -18,7 +18,6 @@
         networking
         syncthing
         aragorn
-        kanata
         sops
         nh
       ];
