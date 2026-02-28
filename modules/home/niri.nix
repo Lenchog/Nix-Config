@@ -47,6 +47,7 @@
               "Mod+S".action =
                 sh "${uwsm}/bin/uwsm app -- $(${wofi}/bin/wofi --define-drun-print_desktop_file=true)";
               "Mod+F".action = sh "${uwsm}/bin/uwsm app -- ${foot}/bin/footclient";
+              "Mod+W".action.screenshot = { };
               "Mod+Q".action = close-window;
               "Mod+A".action = fullscreen-window;
               "Mod+Shift+Q".action = quit;

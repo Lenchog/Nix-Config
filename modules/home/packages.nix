@@ -36,7 +36,6 @@
             pkgs.jdk8
           ];
         })
-        hyprshot
         nix-search-cli
         easyeffects
       ];
