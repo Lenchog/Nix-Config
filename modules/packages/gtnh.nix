@@ -1,23 +1,18 @@
 {
-  inputs,
+  pkgs,
+  lib,
+  # stdenvNoCC,
+  # fetchzip,
+  # jre_headless,
+  # groovy,
+  # makeWrapper,
+  # writeShellScript,
+  config,
   ...
 }:
 {
   perSystem =
-    {
-      pkgs,
-
-      lib,
-      stdenvNoCC,
-      fetchzip,
-      jre_headless,
-      groovy,
-      makeWrapper,
-      writeShellScript,
-      config,
-      ...
-    }:
-
+    { pkgs, ... }:
     let
       # Groovy script to parse meta inf from jar
       readMetaInf = /* groovy */ ''
@@ -34,12 +29,12 @@
       '';
     in
     {
-
       packages.gtnh = pkgs.stdenvNoCC.mkDerivation rec {
         pname = "gt-new-horizons";
         version = "2.8.4";
+        meta.mainProgram = "gt-new-horizons";
 
-        src = fetchzip {
+        src = pkgs.fetchzip {
           url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${version}_Server_Java_17-25.zip";
           hash = "sha256-WgTv53dNuH9jZ3L4+STDB/ydRjkWd1iVU7Mzpsp/Pls=";
           stripRoot = false;
@@ -47,12 +42,12 @@
 
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
 
-        nativeBuildInputs = [
+        nativeBuildInputs = with pkgs; [
           makeWrapper
           groovy
         ];
 
-        preStart = writeShellScript "gtnh-prestart" ''
+        preStart = pkgs.writeShellScript "gtnh-prestart" ''
           out=$1
           for name in "config" "serverutilities" "server.properties"; do
             if ! [[ -e "$name" ]]; then

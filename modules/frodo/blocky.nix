@@ -1,6 +1,5 @@
-{ ... }:
 {
-  services.blocky = {
+  flake.modules.nixos.blocky.services.blocky = {
     enable = true;
     settings = {
       ports = {

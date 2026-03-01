@@ -4,14 +4,10 @@
   nixpkgs,
   ...
 }:
-let
-  nix = self.modules.nixos;
-  hm = self.modules.homeManager;
-in
 {
   flake = {
     nixosConfigurations.legolas = inputs.nixpkgs.lib.nixosSystem {
-      modules = with nix; [
+      modules = with self.modules.nixos; [
         base
         gui
         boot

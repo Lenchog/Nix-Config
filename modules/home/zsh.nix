@@ -7,7 +7,7 @@
         history.path = "$HOME/.zsh_history";
         shellAliases = {
           ff = "${pkgs.fzf}/bin/fzf --preview '${pkgs.pistol}/bin/pistol {}' --bind 'enter:become($EDITOR {})'";
-          cd = "z";
+          cd = "${pkgs.zoxide}/bin/z";
           ls = "${pkgs.lsd}/bin/lsd";
         };
         plugins = [

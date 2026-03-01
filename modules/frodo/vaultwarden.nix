@@ -1,6 +1,5 @@
-{ ... }:
 {
-  services.vaultwarden = {
+  flake.modules.nixos.vaultwarden.services.vaultwarden = {
     enable = true;
     dbBackend = "sqlite";
     config = {

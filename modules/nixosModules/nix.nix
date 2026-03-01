@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   flake.modules.nixos.nix-conf =
     { config, ... }:

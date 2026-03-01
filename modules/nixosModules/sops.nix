@@ -18,6 +18,11 @@
           hashedPassword = {
             neededForUsers = true;
           };
+          garf_key = { };
+          wireguard-frodo-private = { };
+          resticPassword = { };
+          photoprism-password = { };
+          desec-token = { };
           email = { };
           ssh-private-key = {
             path = "/home/lenny/.ssh/nixos_ed25519";

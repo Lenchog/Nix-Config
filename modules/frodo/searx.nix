@@ -1,6 +1,5 @@
-{ ... }:
 {
-  services.searx = {
+  flake.modules.nixos.searx.services.searx = {
     enable = true;
     settings = {
       general = {
@@ -9,7 +8,7 @@
       server = {
         port = 8888;
         bind_address = "127.0.0.1";
-        secret_key = "secretkey";
+        # secret_key = "secretkey";
       };
       search = {
         safe_search = 2;

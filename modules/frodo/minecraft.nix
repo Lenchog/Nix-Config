@@ -3,9 +3,9 @@
   pkgs,
   config,
   lib,
+  self,
   ...
 }:
-
 let
   inherit (inputs.nix-minecraft.lib) collectFilesAt;
   myJvmOpts = "-Xms5G -Xmx5G -XX:+UseCompactObjectHeaders -XX:+UseZGC";
@@ -226,82 +226,83 @@ let
   );
 in
 {
-  imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
-  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-  services.minecraft-servers = {
-    enable = true;
-    eula = true;
-    dataDir = "/var/lib/minecraft";
-    servers = {
-      gtnh = rec {
+  flake.modules.nixos.minecraft =
+    { pkgs, ... }:
+    {
+      imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
+      nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+      services.minecraft-servers = {
         enable = true;
-        package = pkgs.callPackage ./gtnh.nix { };
-        files = {
-          config = "${package}/lib/config";
-          serverutilities = "${package}/lib/serverutilities";
-        };
-        jvmOpts = myJvmOpts;
-        serverProperties = {
-          online-mode = false;
-          allow-flight = true;
-          announce-player-achievements = true;
-          difficulty = 3;
-          enable-command-block = true;
-          level-name = "world";
-          level-type = "rwg";
-          max-build-height = 256;
-          max-players = 5;
-          motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.8.4 \\u00a7e[Whitelist]";
-          hide-online-players = true;
-          op-permission-level = 4;
-          server-name = "GT: New Horizons Server";
-          server-port = 25564;
-          spawn-protection = 1;
-          view-distance = 8;
-          white-list = true;
+        eula = true;
+        dataDir = "/var/lib/minecraft";
+        servers = {
+          gtnh = rec {
+            enable = true;
+            package = self.packages.${pkgs.system}.gtnh;
+            files = {
+              config = "${package}/lib/config";
+              serverutilities = "${package}/lib/serverutilities";
+            };
+            jvmOpts = myJvmOpts;
+            serverProperties = {
+              online-mode = false;
+              allow-flight = true;
+              announce-player-achievements = true;
+              difficulty = 3;
+              enable-command-block = true;
+              level-name = "world";
+              level-type = "rwg";
+              max-build-height = 256;
+              max-players = 5;
+              motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.8.4 \\u00a7e[Whitelist]";
+              hide-online-players = true;
+              op-permission-level = 4;
+              server-name = "GT: New Horizons Server";
+              server-port = 25564;
+              spawn-protection = 1;
+              view-distance = 8;
+              white-list = true;
+            };
+          };
+          season-4 = {
+            enable = false;
+            package = pkgs.fabricServers.fabric-1_21_4;
+            serverProperties = {
+              server-port = 25564;
+              difficulty = "hard";
+              motd = "Season 4";
+              max-world-size = 2500;
+              online-mode = false;
+              white-list = true;
+              enable-command-block = true;
+            };
+            symlinks."mods" = mods;
+            jvmOpts = myJvmOpts;
+          };
         };
       };
-      season-4 = {
-        enable = false;
-        package = pkgs.fabricServers.fabric-1_21_4;
-        serverProperties = {
-          server-port = 25564;
-          difficulty = "hard";
-          motd = "Season 4";
-          max-world-size = 2500;
-          online-mode = false;
-          white-list = true;
-          enable-command-block = true;
-        };
-        symlinks."mods" = mods;
-        jvmOpts = myJvmOpts;
+      services.haproxy = {
+        enable = true;
+        config = ''
+          global
+            log stderr format iso local7
+          defaults
+            mode tcp
+            log global
+            option tcplog
+            maxconn 20000
+            timeout client 200s
+            timeout server 200s
+            timeout connect 20s
+          frontend minecraft-frontend
+            bind *:25565
+            tcp-request inspect-delay 5s
+            acl craft req.payload(5,16),lower -m sub mc.lench.org
+            tcp-request content accept if craft
+            use_backend craft if craft
+          backend craft
+             server craft-server 127.0.0.1:25564 check
+        '';
       };
     };
-  };
-  services.haproxy = {
-    enable = true;
-    config = ''
-      global
-        log stderr format iso local7
-      defaults
-        mode tcp
-        log global
-        option tcplog
-        maxconn 20000
-        timeout client 200s
-        timeout server 200s
-        timeout connect 20s
-      frontend minecraft-frontend
-        bind *:25565
-        tcp-request inspect-delay 5s
-        acl craft req.payload(5,16),lower -m sub mc.lench.org
-        tcp-request content accept if craft
-        use_backend craft if craft
-      backend craft
-         server craft-server 127.0.0.1:25564 check
-    '';
-  };
 }
