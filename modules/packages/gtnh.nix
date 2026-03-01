@@ -1,12 +1,6 @@
 {
   pkgs,
   lib,
-  # stdenvNoCC,
-  # fetchzip,
-  # jre_headless,
-  # groovy,
-  # makeWrapper,
-  # writeShellScript,
   config,
   ...
 }:
