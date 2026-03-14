@@ -1,4 +1,3 @@
-{ inputs, self, ... }:
 {
   flake.modules.nixos.base =
     { pkgs, lib, ... }:

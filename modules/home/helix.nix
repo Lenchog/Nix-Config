@@ -8,7 +8,6 @@
         defaultEditor = true;
         extraPackages = [
           inputs.nil
-          pkgs.pylyzer
         ];
         settings = {
           theme = lib.mkForce "t_catppuccin_mocha";
@@ -47,11 +46,14 @@
             {
               name = "python";
               auto-format = true;
-              language-servers = [ "pylyzer" ];
+              language-servers = [ "ruff" ];
             }
           ];
           language-server.rust-analyzer.config.check = {
             command = "clippy";
+          };
+          language-server.ruff = {
+            command = "${pkgs.ruff}/bin/ruff";
           };
           language-server.nil = {
             commands = "${inputs.nil}/bin/nil";

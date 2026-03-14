@@ -38,6 +38,7 @@
         })
         nix-search-cli
         easyeffects
+        nil
       ];
     };
 }
