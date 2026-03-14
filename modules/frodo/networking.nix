@@ -24,6 +24,8 @@
             allowedUDPPorts = [
               53
               67 # blocky / dhcp
+              # geyser
+              19132
             ];
           };
           interfaces."wg0".allowedUDPPorts = [ 4242 ];
