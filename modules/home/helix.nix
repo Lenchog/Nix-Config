@@ -48,12 +48,20 @@
               auto-format = true;
               language-servers = [ "ruff" ];
             }
+            {
+              name = "java";
+              auto-format = true;
+              language-servers = [ "jdtls" ];
+            }
           ];
           language-server.rust-analyzer.config.check = {
             command = "clippy";
           };
           language-server.ruff = {
             command = "${pkgs.ruff}/bin/ruff";
+          };
+          language-server.jdtls = {
+            command = "${pkgs.jdt-language-server}/bin/jdtls";
           };
           language-server.nil = {
             commands = "${inputs.nil}/bin/nil";
