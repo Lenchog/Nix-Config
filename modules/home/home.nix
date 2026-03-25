@@ -1,7 +1,6 @@
 {
   self,
   inputs,
-  lib,
   ...
 }:
 {
@@ -18,6 +17,7 @@
         git
         helix
         lf
+        spicetify
         niri
         mako
         stylix

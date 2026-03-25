@@ -3,6 +3,7 @@
 
   inputs = {
     nixos.url = "nixpkgs/nixos-unstable";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
