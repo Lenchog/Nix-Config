@@ -8,7 +8,6 @@
     {
       programs.firefox = {
         enable = true;
-        package = pkgs.firefox;
         profiles.lenchog = {
           search = {
             engines = {
@@ -391,7 +390,7 @@
             "general.smoothScroll.msdPhysics.slowdownSpringConstant" = 250;
             "general.smoothScroll.currentVelocityWeighting" = "1";
             "general.smoothScroll.stopDecelerationWeighting" = "1";
-            "mousewheel.default.delta_multiplier_y" = 300; # 250-40; adjust this number to your liking
+            "mousewheel.default.delta_multiplier_y" = 300; # 250-400; adjust this number to your liking
 
             /**
               **************************************************************************
