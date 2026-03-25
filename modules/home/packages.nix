@@ -20,7 +20,7 @@
         # Apps
         reaper
         vital
-        spotify
+        tetrio-desktop
         ldtk
         bottom
         obsidian
