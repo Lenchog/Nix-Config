@@ -1,11 +1,4 @@
-{
-  specialArgs,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
-
+{ inputs, ... }:
 {
   imports = [
     inputs.disko.nixosModules.disko

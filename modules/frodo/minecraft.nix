@@ -1,13 +1,9 @@
 {
   inputs,
-  pkgs,
-  config,
-  lib,
   self,
   ...
 }:
 let
-  inherit (inputs.nix-minecraft.lib) collectFilesAt;
   myJvmOpts = "-Xms5G -Xmx5G -XX:+UseZGC";
 in
 {
@@ -52,7 +48,7 @@ in
               white-list = true;
             };
           };
-          cms-0 = rec {
+          cms-0 = {
             enable = true;
             package = pkgs.fabricServers.fabric-1_21_11;
             serverProperties = {

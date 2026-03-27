@@ -1,9 +1,4 @@
-{
-  inputs,
-  pkgs,
-  config,
-  ...
-}:
+{ inputs, ... }:
 {
   flake.modules.nixos.garf =
     { config, pkgs, ... }:
