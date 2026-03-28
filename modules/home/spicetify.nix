@@ -17,9 +17,6 @@
             songStats
             wikify
           ];
-          # theme = spicePkgs.themes.catppuccin;
-          theme = spicePkgs.themes.blossom;
-          # colorScheme = "mocha";
         };
     };
 }

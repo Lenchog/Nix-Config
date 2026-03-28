@@ -1,8 +1,6 @@
 {
-  nixpkgs,
   inputs,
   self,
-  config,
   ...
 }:
 {
@@ -19,7 +17,7 @@
         frodo
         blocky
         garf
-        homeManagerFrodo
+        homeManagerServer
         minecraft
         networkingFrodo
         restic
@@ -30,6 +28,7 @@
       ];
     };
     modules.nixos.frodo = {
+      services.minecraft-servers.servers.cms-0.enable = true;
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/c97efa2e-8ced-4629-a95d-2b7ecde98bf0";
         fsType = "ext4";

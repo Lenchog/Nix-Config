@@ -1,16 +1,9 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ inputs, ... }:
 {
   flake.modules.nixos.networkingFrodo =
     { config, pkgs, ... }:
     {
       networking = {
-        hostName = "frodo";
-        defaultGateway = "192.168.1.1";
         firewall = {
           enable = true;
           interfaces."eno1" = {

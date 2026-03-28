@@ -1,12 +1,11 @@
 {
   self,
   inputs,
-  lib,
   ...
 }:
 {
   flake.modules = {
-    nixos.homeManagerFrodo = {
+    nixos.homeManagerServer = {
       imports = [ inputs.home-manager.nixosModules.home-manager ];
       home-manager.users.lenny.imports = with self.modules.homeManager; [
         base

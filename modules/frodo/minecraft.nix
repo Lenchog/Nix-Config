@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   self,
   ...
@@ -18,7 +19,6 @@ in
         dataDir = "/var/lib/minecraft";
         servers = {
           gtnh = rec {
-            enable = false;
             package = self.packages.${pkgs.system}.gtnh;
             files = {
               config = "${package}/lib/config";
@@ -26,9 +26,6 @@ in
             };
             jvmOpts = myJvmOpts;
             serverProperties = {
-              resource-pack = "https://cdn.modrinth.com/data/HfNmMQ9E/versions/S8Oe9FyR/Sparkles_1.21.x_v1.1.6.zip";
-              resource-pack-sha1 = "8cbd7950b028b7191f62ba2fba8d463283d42619";
-              resource-pack-prompt = "This is for the Incendium items";
               online-mode = false;
               allow-flight = true;
               announce-player-achievements = true;
@@ -49,9 +46,11 @@ in
             };
           };
           cms-0 = {
-            enable = true;
             package = pkgs.fabricServers.fabric-1_21_11;
             serverProperties = {
+              resource-pack = "https://cdn.modrinth.com/data/HfNmMQ9E/versions/S8Oe9FyR/Sparkles_1.21.x_v1.1.6.zip";
+              resource-pack-sha1 = "8cbd7950b028b7191f62ba2fba8d463283d42619";
+              resource-pack-prompt = "This is for the Incendium items";
               server-port = 25564;
               difficulty = "hard";
               motd = "hello cms buddies";
@@ -222,7 +221,7 @@ in
       };
       services.haproxy = {
         enable = true;
-        config = ''
+        config = lib.mkDefault ''
           global
             log stderr format iso local7
           defaults
