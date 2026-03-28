@@ -5,7 +5,7 @@
   ...
 }:
 let
-  myJvmOpts = "-Xms5G -Xmx5G -XX:+UseZGC";
+  myJvmOpts = "-Xms12G -Xmx12G -XX:+UseZGC";
 in
 {
   flake.modules.nixos.minecraft =
