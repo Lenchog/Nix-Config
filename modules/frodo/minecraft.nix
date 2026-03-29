@@ -4,9 +4,6 @@
   self,
   ...
 }:
-let
-  myJvmOpts = "-Xms12G -Xmx12G -XX:+UseZGC";
-in
 {
   flake.modules.nixos.minecraft =
     { pkgs, ... }:
@@ -24,7 +21,7 @@ in
               config = "${package}/lib/config";
               serverutilities = "${package}/lib/serverutilities";
             };
-            jvmOpts = myJvmOpts;
+            jvmOpts = "-Xms10G -Xmx10G -XX:+UseZGC";
             serverProperties = {
               online-mode = false;
               allow-flight = true;
@@ -59,7 +56,7 @@ in
               white-list = true;
               enable-command-block = true;
             };
-            jvmOpts = myJvmOpts;
+            jvmOpts = "-Xms5G -Xmx5G -XX:+UseZGC";
             symlinks."config/Geyser-Fabric/packs" = pkgs.linkFarmFromDrvs "packs" (
               builtins.attrValues {
                 Sparkles = pkgs.fetchurl {
@@ -94,7 +91,7 @@ in
                   sha256 = "7shJvGGe8n5HgBczTyVC30Kh0PanLISwPpmGQZt2CzQ=";
                 };
                 SimpleVoiceChat = pkgs.fetchurl {
-                  url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/pFTZ8sqQ/voicechat-fabric-1.21.11-2.6.12.jar";
+                  url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/pFTZ8sqQ/voicechat-fabric-1.21.11-2.6.10.jar";
                   sha256 = "HwedHcqW2UhPdxPNROKWUcwIxAp0kj0gSdB7/dX3bcA=";
                 };
                 VoiceChatInteractions = pkgs.fetchurl {
@@ -239,7 +236,7 @@ in
             tcp-request content accept if craft
             use_backend craft if craft
           backend craft
-             server craft-server 127.0.0.1:25564 check
+             server craft-server 107.0.0.1:25564 check
         '';
       };
     };
