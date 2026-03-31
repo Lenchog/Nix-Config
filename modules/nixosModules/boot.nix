@@ -1,9 +1,10 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   flake.modules.nixos.boot =
     { pkgs, ... }:
     {
       boot = {
+        plymouth.enable = true;
         loader = {
           systemd-boot.enable = true;
           efi.canTouchEfiVariables = true;
@@ -22,12 +23,6 @@
           "udev.log_level=0"
         ];
         kernelPackages = pkgs.linuxPackages_zen;
-      };
-      fonts.fontconfig.allowBitmaps = true;
-      console = with pkgs; {
-        earlySetup = true;
-        font = "${spleen}/share/consolefonts/spleen-16x32.psfu";
-        packages = [ spleen ];
       };
     };
 }
