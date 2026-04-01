@@ -40,7 +40,17 @@
           }
         ];
       };
+      systemd.sleep.extraConfig = ''
+        AllowSuspend=no
+        AllowHibernation=no
+        AllowHybridSleep=no
+        AllowSuspendThenHibernate=no
+      '';
       services = {
+        # Enable automatic login for the user.
+        displayManager.autoLogin.enable = true;
+        displayManager.autoLogin.user = "eric";
+
         minecraft-servers.servers.gtnh.enable = true;
         logind.lidSwitchExternalPower = "ignore";
         openssh = {
