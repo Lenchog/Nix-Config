@@ -4,6 +4,7 @@
     { config, pkgs, ... }:
     {
       networking = {
+        defaultGateway = "192.168.1.1";
         firewall = {
           enable = true;
           interfaces."eno1" = {
