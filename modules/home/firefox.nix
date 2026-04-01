@@ -326,13 +326,18 @@
             */
 
           };
-          userChrome =
-            # css
-            ''
-              * {
-              	font-family: ${config.stylix.fonts.monospace.name} !important;
-              }
-            '';
+          # userChrome =
+          #   # css
+          #   ''
+          #     * {
+          #     	font-family: ${config.stylix.fonts.monospace.name} !important;
+          #     }
+          #   '';
+        };
+      };
+      home.file = {
+        ".mozilla/firefox/lenchog/chrome" = {
+          source = ./chrome;
         };
       };
     };
