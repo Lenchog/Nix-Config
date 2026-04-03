@@ -91,12 +91,16 @@
                   sha256 = "7shJvGGe8n5HgBczTyVC30Kh0PanLISwPpmGQZt2CzQ=";
                 };
                 SimpleVoiceChat = pkgs.fetchurl {
-                  url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/pFTZ8sqQ/voicechat-fabric-1.21.11-2.6.10.jar";
-                  sha256 = "HwedHcqW2UhPdxPNROKWUcwIxAp0kj0gSdB7/dX3bcA=";
+                  url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/TE9flmQz/voicechat-fabric-1.21.11-2.6.14.jar";
+                  sha256 = "iW2FfgfxqIgxyJYfeEgpSlEGYOjfAnLsrx4+Y4rrV2w=";
                 };
                 VoiceChatInteractions = pkgs.fetchurl {
                   url = "https://cdn.modrinth.com/data/qsSP2ZZ0/versions/9PqoA83N/vcinteraction-fabric-1.21.11-1.0.8.jar";
                   sha256 = "eq3Sj9jyFgvfkbZEFqRYMCGSUqbQUaQn8p5aEhrjvSU=";
+                };
+                NoChatReports = pkgs.fetchurl {
+                  url = "https://cdn.modrinth.com/data/qQyHxfxd/versions/rhykGstm/NoChatReports-FABRIC-1.21.11-v2.18.0.jar";
+                  sha256 = "FIAjmJ8BT98BLlDYpDp1zErTkZn4mBT1yMo43N7+ELg=";
                 };
                 DoubleDoors = pkgs.fetchurl {
                   url = "https://cdn.modrinth.com/data/JrvR9OHr/versions/roVanbyg/doubledoors-1.21.11-7.2.jar";
