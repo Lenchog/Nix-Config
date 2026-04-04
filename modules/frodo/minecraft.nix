@@ -20,6 +20,15 @@
             files = {
               config = "${package}/lib/config";
               serverutilities = "${package}/lib/serverutilities";
+              "serverutilities/serverutilities.cfg" = ./serverutilities.cfg;
+            };
+            symlinks = {
+              "mods/distanthorizons-alpha18.jar" = pkgs.fetchurl rec {
+                pname = "distanthorizons";
+                version = "alpha18";
+                url = "https://github.com/DarkShadow44/DistantHorizonsStandalone/releases/download/${version}/${pname}-${version}.jar";
+                sha256 = "DVwZmTONqzl7VXViwk9m6EsbK8GRRuydwZfMPLUSmr4=";
+              };
             };
             jvmOpts = "-Xms10G -Xmx10G -XX:+UseZGC";
             serverProperties = {
