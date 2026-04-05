@@ -41,7 +41,7 @@
       services = {
         haproxy = {
           enable = true;
-          config = lib.mkDefault ''
+          config = ''
             global
               log stderr format iso local7
             defaults
