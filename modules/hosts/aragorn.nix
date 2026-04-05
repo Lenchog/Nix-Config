@@ -1,11 +1,6 @@
-{
-  inputs,
-  self,
-  ...
-}:
+{ inputs, self, ... }:
 {
   flake = {
-
     nixosConfigurations.aragorn = inputs.nixpkgs.lib.nixosSystem {
       modules = with self.modules.nixos; [
         base
@@ -40,7 +35,7 @@
       hardware.nvidia = {
         open = false;
         modesetting.enable = true;
-        # package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+        # Package is changed in gui file because it doesn't work here for whatever reason
       };
       services.xserver.videoDrivers = [ "nvidia" ];
       networking.hostName = "aragorn";
