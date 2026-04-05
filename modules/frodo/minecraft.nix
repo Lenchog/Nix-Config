@@ -22,14 +22,14 @@
               serverutilities = "${package}/lib/serverutilities";
               "serverutilities/serverutilities.cfg" = ./serverutilities.cfg;
             };
-            symlinks = {
-              "mods/distanthorizons-alpha18.jar" = pkgs.fetchurl rec {
-                pname = "distanthorizons";
-                version = "alpha18";
-                url = "https://github.com/DarkShadow44/DistantHorizonsStandalone/releases/download/${version}/${pname}-${version}.jar";
-                sha256 = "DVwZmTONqzl7VXViwk9m6EsbK8GRRuydwZfMPLUSmr4=";
-              };
-            };
+            # symlinks = {
+            #   "mods/distanthorizons-alpha18.jar" = pkgs.fetchurl rec {
+            #     pname = "distanthorizons";
+            #     version = "alpha18";
+            #     url = "https://github.com/DarkShadow44/DistantHorizonsStandalone/releases/download/${version}/${pname}-${version}.jar";
+            #     sha256 = "DVwZmTONqzl7VXViwk9m6EsbK8GRRuydwZfMPLUSmr4=";
+            #   };
+            # };
             jvmOpts = "-Xms10G -Xmx10G -XX:+UseZGC";
             serverProperties = {
               online-mode = false;
@@ -45,7 +45,7 @@
               hide-online-players = true;
               op-permission-level = 4;
               server-name = "GT: New Horizons Server";
-              server-port = 25564;
+              server-port = 25566;
               spawn-protection = 1;
               view-distance = 8;
               white-list = true;
@@ -228,29 +228,6 @@
             );
           };
         };
-      };
-      services.haproxy = {
-        enable = true;
-        config = lib.mkDefault ''
-          global
-            log stderr format iso local7
-          defaults
-            mode tcp
-            log global
-            option tcplog
-            maxconn 20000
-            timeout client 200s
-            timeout server 200s
-            timeout connect 20s
-          frontend minecraft-frontend
-            bind *:25565
-            tcp-request inspect-delay 5s
-            acl craft req.payload(5,16),lower -m sub mc.lench.org
-            tcp-request content accept if craft
-            use_backend craft if craft
-          backend craft
-             server craft-server 107.0.0.1:25564 check
-        '';
       };
     };
 }

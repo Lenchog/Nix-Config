@@ -39,6 +39,34 @@
         fsType = "vfat";
       };
       services = {
+        haproxy = {
+          enable = true;
+          config = lib.mkDefault ''
+            global
+              log stderr format iso local7
+            defaults
+              mode tcp
+              log global
+              option tcplog
+              maxconn 20000
+              timeout client 200s
+              timeout server 200s
+              timeout connect 20s
+            frontend minecraft-frontend
+              bind *:25565
+              tcp-request inspect-delay 5s
+              acl craft req.payload(5,16),lower -m sub mc.lench.org
+              tcp-request content accept if craft
+              use_backend craft if craft
+              acl other-craft req.payload(5,16),lower -m sub gtnh.lench.org
+              tcp-request content accept if other-craft
+              use_backend other-craft if other-craft
+            backend craft
+               server craft-server 0.0.0.0:25564 check
+            backend other-craft
+               server craft-server 192.168.1.4:25566 check
+          '';
+        };
         openssh = {
           enable = true;
           ports = [ 2121 ];
