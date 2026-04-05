@@ -62,9 +62,9 @@
               tcp-request content accept if other-craft
               use_backend other-craft if other-craft
             backend craft
-               server craft-server 0.0.0.0:25564 check
+               server craft-server 127.0.0.1:25564 check
             backend other-craft
-               server craft-server 192.168.1.4:25566 check
+               server craft-server 192.168.1.4:25564 check
           '';
         };
         openssh = {

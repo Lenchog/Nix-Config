@@ -1,5 +1,4 @@
 {
-  lib,
   inputs,
   self,
   ...
@@ -45,7 +44,7 @@
               hide-online-players = true;
               op-permission-level = 4;
               server-name = "GT: New Horizons Server";
-              server-port = 25566;
+              server-port = 25564;
               spawn-protection = 1;
               view-distance = 8;
               white-list = true;

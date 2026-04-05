@@ -28,7 +28,6 @@
           interfaces.wlp0s20f3 = {
             allowedTCPPorts = [
               25565 # minecraft
-              25566 # minecraft
               25564 # also minecraft idk why we need this
               2121 # ssh
             ];
@@ -36,7 +35,7 @@
         };
         interfaces.wlp0s20f3.ipv4.addresses = [
           {
-            address = "192.168.1.67";
+            address = "192.168.1.4";
             prefixLength = 24;
           }
         ];
