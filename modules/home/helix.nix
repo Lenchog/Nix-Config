@@ -54,18 +54,19 @@
               language-servers = [ "jdtls" ];
             }
           ];
-          language-server.rust-analyzer.config.check = {
-            command = "clippy";
-          };
-          language-server.ruff = {
-            command = "${pkgs.ruff}/bin/ruff";
-          };
-          language-server.jdtls = {
-            command = "${pkgs.jdt-language-server}/bin/jdtls";
-          };
-          language-server.nil = {
-            commands = "${inputs.nil}/bin/nil";
-            config = { };
+          language-server = {
+            rust-analyzer.config.check = {
+              command = "clippy";
+            };
+            ruff = {
+              command = "${pkgs.ruff}/bin/ruff";
+            };
+            jdtls = {
+              command = "${pkgs.jdt-language-server}/bin/jdtls";
+            };
+            nil = {
+              commands = "${inputs.nil}/bin/nil";
+            };
           };
         };
       };

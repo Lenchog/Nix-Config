@@ -28,19 +28,19 @@ in
           repository = "/var/restic";
           passwordFile = config.sops.secrets."resticPassword".path;
           initialize = true;
-          pruneOpts = pruneOpts;
+          inherit pruneOpts;
         };
         hard-drive = {
           paths = full;
           repository = "/media/hard-drive/restic";
-          pruneOpts = pruneOpts;
+          inherit pruneOpts;
           passwordFile = config.sops.secrets."resticPassword".path;
           initialize = true;
         };
         google-drive = {
           paths = minimal;
           repository = "/media/google-drive/restic";
-          pruneOpts = pruneOpts;
+          inherit pruneOpts;
           passwordFile = config.sops.secrets."resticPassword".path;
           initialize = true;
         };

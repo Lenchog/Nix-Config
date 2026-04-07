@@ -54,50 +54,37 @@
             };
           in
           {
-            "grafana.lench.org" = (
-              SSL
+            "grafana.lench.org" = SSL
               // {
                 locations."/" = {
                   proxyPass = "http://127.0.0.1:3000/";
                   proxyWebsockets = true;
                 };
-              }
-            );
-            "photos.lench.org" = (
-              SSL
+              };
+            "photos.lench.org" = SSL
               // {
                 locations."/" = {
                   proxyPass = "http://127.0.0.1:2283";
                   proxyWebsockets = true;
                 };
-              }
-            );
-            "search.lench.org" = (
-              SSL
+              };
+            "search.lench.org" = SSL
               // {
                 locations."/".proxyPass = "http://127.0.0.1:8888/";
-              }
-            );
-            "sync.lench.org" = (
-              SSL
+              };
+            "sync.lench.org" = SSL
               // {
                 locations."/".proxyPass = "http://127.0.0.1:8384/";
-              }
-            );
-            "jellyfin.lench.org" = (
-              SSL
+              };
+            "jellyfin.lench.org" = SSL
               // {
                 locations."/".proxyPass = "http://127.0.0.1:8096/";
-              }
-            );
-            "lench.org" = (
-              SSL
+              };
+            "lench.org" = SSL
               // {
                 root = "${inputs.lenchorg}";
-              }
-            );
-            "vault.lench.org" = (
-              SSL
+              };
+            "vault.lench.org" = SSL
               // {
                 locations."/" = {
                   proxyPass = "http://127.0.0.1:8222";
@@ -109,8 +96,7 @@
                     								proxy_set_header X-Forwarded-Proto $scheme;
                     							'';
                 };
-              }
-            );
+              };
           };
       };
     };
