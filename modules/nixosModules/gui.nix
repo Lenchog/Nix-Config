@@ -6,9 +6,6 @@
       imports = [
         inputs.musnix.nixosModules.musnix
       ];
-      # hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.beta;
-      # absolutely no idea why this doesn't work when it's in the aragorn module
-      hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
       musnix.enable = true;
       programs = {
         uwsm = {

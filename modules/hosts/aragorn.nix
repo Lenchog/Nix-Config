@@ -19,7 +19,6 @@
     modules.nixos.aragorn = {
       boot = {
         initrd = {
-          kernelModules = [ "nvidia" ];
           availableKernelModules = [
             "xhci_pci"
             "ahci"
@@ -28,7 +27,6 @@
           ];
         };
         kernelParams = [
-          "nvidia-drm.modeset=1"
           "kvm-amd"
         ];
       };
@@ -37,7 +35,6 @@
         modesetting.enable = true;
         # Package is changed in gui file because it doesn't work here for whatever reason
       };
-      services.xserver.videoDrivers = [ "nvidia" ];
       networking.hostName = "aragorn";
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/ce6b7dd2-5df7-49b7-bd87-45c6c86ee0fb";
