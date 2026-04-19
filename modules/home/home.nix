@@ -19,6 +19,7 @@
         lf
         spicetify
         niri
+        anyrun
         mako
         stylix
         wofi

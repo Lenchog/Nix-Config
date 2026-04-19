@@ -45,8 +45,7 @@
               "XF86AudioLowerVolume".action = sh "${wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 0.1-";
               "XF86MonBrightnessUp".action = sh "${brightnessctl}/bin/brightnessctl set +10%";
               "XF86MonBrightnessDown".action = sh "${brightnessctl}/bin/brightnessctl set 10%-";
-              "Mod+S".action =
-                sh "${uwsm}/bin/uwsm app -- $(${wofi}/bin/wofi --define-drun-print_desktop_file=true)";
+              "Mod+S".action = sh "${uwsm}/bin/uwsm app -- $(${anyrun}/bin/anyrun)";
               "Mod+F".action = sh "${uwsm}/bin/uwsm app -- ${foot}/bin/footclient";
               "Mod+W".action.screenshot = { };
               "Mod+Q".action = close-window;
