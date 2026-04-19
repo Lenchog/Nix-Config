@@ -9,10 +9,6 @@
     import-tree.url = "github:vic/import-tree";
     nil.url = "github:oxalica/nil";
     garf.url = "github:lenchog/garf";
-    lenchorg = {
-      url = "github:lenchog/lenchorg";
-      flake = false;
-    };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     musnix.url = "github:musnix/musnix";
     home-manager = {

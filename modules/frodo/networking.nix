@@ -1,4 +1,3 @@
-{ inputs, ... }:
 {
   flake.modules.nixos.networkingFrodo =
     { config, pkgs, ... }:
@@ -54,49 +53,39 @@
             };
           in
           {
-            "grafana.lench.org" = SSL
-              // {
-                locations."/" = {
-                  proxyPass = "http://127.0.0.1:3000/";
-                  proxyWebsockets = true;
-                };
+            "grafana.lench.org" = SSL // {
+              locations."/" = {
+                proxyPass = "http://127.0.0.1:3000/";
+                proxyWebsockets = true;
               };
-            "photos.lench.org" = SSL
-              // {
-                locations."/" = {
-                  proxyPass = "http://127.0.0.1:2283";
-                  proxyWebsockets = true;
-                };
+            };
+            "photos.lench.org" = SSL // {
+              locations."/" = {
+                proxyPass = "http://127.0.0.1:2283";
+                proxyWebsockets = true;
               };
-            "search.lench.org" = SSL
-              // {
-                locations."/".proxyPass = "http://127.0.0.1:8888/";
+            };
+            "search.lench.org" = SSL // {
+              locations."/".proxyPass = "http://127.0.0.1:8888/";
+            };
+            "sync.lench.org" = SSL // {
+              locations."/".proxyPass = "http://127.0.0.1:8384/";
+            };
+            "jellyfin.lench.org" = SSL // {
+              locations."/".proxyPass = "http://127.0.0.1:8096/";
+            };
+            "vault.lench.org" = SSL // {
+              locations."/" = {
+                proxyPass = "http://127.0.0.1:8222";
+                proxyWebsockets = true;
+                extraConfig = ''
+                  								proxy_set_header Host $host;
+                  								proxy_set_header X-Real-IP $remote_addr;
+                  								proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  								proxy_set_header X-Forwarded-Proto $scheme;
+                  							'';
               };
-            "sync.lench.org" = SSL
-              // {
-                locations."/".proxyPass = "http://127.0.0.1:8384/";
-              };
-            "jellyfin.lench.org" = SSL
-              // {
-                locations."/".proxyPass = "http://127.0.0.1:8096/";
-              };
-            "lench.org" = SSL
-              // {
-                root = "${inputs.lenchorg}";
-              };
-            "vault.lench.org" = SSL
-              // {
-                locations."/" = {
-                  proxyPass = "http://127.0.0.1:8222";
-                  proxyWebsockets = true;
-                  extraConfig = ''
-                    								proxy_set_header Host $host;
-                    								proxy_set_header X-Real-IP $remote_addr;
-                    								proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                    								proxy_set_header X-Forwarded-Proto $scheme;
-                    							'';
-                };
-              };
+            };
           };
       };
     };
