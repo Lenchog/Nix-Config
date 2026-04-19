@@ -21,6 +21,7 @@
         reaper
         vital
         tetrio-desktop
+        nautilus
         ldtk
         bottom
         obsidian
