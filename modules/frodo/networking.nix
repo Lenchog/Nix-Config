@@ -65,6 +65,9 @@
                 proxyWebsockets = true;
               };
             };
+            "lench.org" = SSL // {
+              root = null;
+            };
             "search.lench.org" = SSL // {
               locations."/".proxyPass = "http://127.0.0.1:8888/";
             };
