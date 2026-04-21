@@ -14,6 +14,42 @@
         eula = true;
         dataDir = "/var/lib/minecraft";
         servers = {
+          sb4 =
+            let
+              stoneblock = self.packages.${pkgs.system}.stoneblock-4;
+            in
+            {
+              package = pkgs.neoforgeServers.neoforge-1_21_1;
+              files = {
+                config = "${stoneblock}/lib/config";
+                kubejs = "${stoneblock}/lib/kubejs";
+                ftbteambases = "${stoneblock}/lib/ftbteambases";
+              };
+              symlinks = {
+                configureddefaults = "${stoneblock}/lib/configureddefaults";
+                datapacks = "${stoneblock}/lib/datapacks";
+                defaultconfigs = "${stoneblock}/lib/defaultconfigs";
+                libraries = "${stoneblock}/lib/libraries";
+                mods = "${stoneblock}/lib/mods";
+                resourcepacks = "${stoneblock}/lib/resourcepacks";
+                schematics = "${stoneblock}/lib/schematics";
+              };
+              jvmOpts = "-Xms10G -Xmx10G -XX:+UseZGC";
+              serverProperties = {
+                allow-flight = true;
+                allow-nether = false;
+                bug-report-link = "";
+                difficulty = "normal";
+                enable-command-block = true;
+                generate-structures = true;
+                level-type = "minecraft\\:normal";
+                spawn-protection = 512;
+                server-name = "Stoneblock 4 Server";
+                motd = "\\u00a77Stoneblock 4\\u00a7r\\n\\u00a7bv1.11.0 \\u00a7e[Whitelist]";
+                server-port = 25564;
+                white-list = true;
+              };
+            };
           gtnh = rec {
             package = self.packages.${pkgs.system}.gtnh;
             files = {

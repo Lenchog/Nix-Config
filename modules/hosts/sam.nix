@@ -45,7 +45,8 @@
         displayManager.autoLogin.enable = true;
         displayManager.autoLogin.user = "lenny";
 
-        minecraft-servers.servers.gtnh.enable = true;
+        minecraft-servers.servers.gtnh.enable = false;
+        minecraft-servers.servers.sb4.enable = true;
         logind.lidSwitchExternalPower = "ignore";
         openssh = {
           enable = true;
