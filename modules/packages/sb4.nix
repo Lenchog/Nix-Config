@@ -1,4 +1,3 @@
-{ self, lib, ... }:
 {
   perSystem =
     { pkgs, ... }:
@@ -22,7 +21,7 @@
           # specify the content hash of this derivations output
           outputHashAlgo = "sha256";
           outputHashMode = "recursive";
-          outputHash = "UWaTZHCkMsRaYSYEi9gLXa8i3DFNisBv32592e5Q9/M=";
+          outputHash = "JlCc8uY0lJY3E1ZayldsWQiQ6iUQpMu3ipYHYI+il2k=";
         };
       };
     };
