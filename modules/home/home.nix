@@ -16,13 +16,11 @@
         foot
         git
         helix
-        lf
         spicetify
         niri
         anyrun
         mako
         stylix
-        wofi
         zoxide
         zsh
       ];
