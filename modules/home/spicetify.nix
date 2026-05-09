@@ -13,9 +13,10 @@
           enabledExtensions = with spicePkgs.extensions; [
             beautiful-lyrics
             hidePodcasts
-            shuffle # shuffle+ (special characters are sanitized out of extension names)
+            shuffle
             songStats
             wikify
+            fullAppDisplay
           ];
         };
     };
