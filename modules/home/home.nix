@@ -23,6 +23,7 @@
         stylix
         zoxide
         zsh
+        slippi
       ];
     };
     homeManager.base = {
