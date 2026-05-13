@@ -18,6 +18,10 @@
     stylix.url = "github:danth/stylix";
     niri.url = "github:sodiboo/niri-flake";
     sops-nix.url = "github:Mic92/sops-nix";
+    slippi-nix = {
+      url = "github:lytedev/slippi-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     inputs:
