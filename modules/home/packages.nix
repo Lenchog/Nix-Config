@@ -27,7 +27,6 @@
             pkgs.jdk8
           ];
         })
-        easyeffects
       ];
     };
 }
