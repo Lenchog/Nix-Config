@@ -32,6 +32,7 @@
           powertop.enable = true;
         };
         services = {
+          asusd.enable = true;
           tlp = {
             enable = true;
             settings = {
