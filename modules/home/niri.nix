@@ -9,6 +9,7 @@
           ${uwsm}/bin/uwsm app -- ${swaybg}/bin/swaybg -m fill -i ${config.stylix.image} &
           ${uwsm}/bin/uwsm app -- ${eww}/bin/eww open bar &
           ${uwsm}/bin/uwsm app -- ${xwayland-satellite}/bin/xwayland-satellite &
+          ${uwsm}/bin/uwsm app -- ${easyeffects}/bin/easyeffects --gapplication-service
         '';
     in
     {
