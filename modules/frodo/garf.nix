@@ -1,7 +1,11 @@
 { inputs, ... }:
 {
   flake.modules.nixos.garf =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
     {
       systemd.services.garf = {
         description = "AKL leaderboard bot";

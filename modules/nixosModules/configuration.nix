@@ -1,6 +1,10 @@
 {
   flake.modules.nixos.base =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      ...
+    }:
     {
       nix.package = pkgs.lixPackageSets.stable.lix;
       # required for hm module

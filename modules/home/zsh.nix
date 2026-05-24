@@ -21,13 +21,13 @@
             };
           }
           {
-            name = "syntax-highlighting";
-            file = "zsh-syntax-highlighting.plugin.zsh";
+            name = "zsh-patina";
+            file = "zsh-patina.plugin.zsh";
             src = pkgs.fetchFromGitHub {
-              owner = "zsh-users";
-              repo = "zsh-syntax-highlighting";
+              owner = "michael-kraemer";
+              repo = "zsh-patina";
               rev = "master";
-              sha256 = "sha256-KRsQEDRsJdF7LGOMTZuqfbW6xdV5S38wlgdcCM98Y/Q=";
+              sha256 = "";
             };
           }
           {
@@ -54,10 +54,6 @@
           ${fastfetch}/bin/fastfetch
            bindkey '^H' backward-kill-word
         '';
-      };
-      home.sessionVariables = {
-        FZF_DEFAULT_COMMAND = "fd --type f";
-        FZF_DEFAULT_OPTS = "--layout=reverse";
       };
     };
 }

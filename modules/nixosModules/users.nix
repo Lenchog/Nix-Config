@@ -1,7 +1,15 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 {
   flake.modules.nixos.users =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      ...
+    }:
     {
       users = {
         mutableUsers = false;

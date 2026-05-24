@@ -1,7 +1,11 @@
 { inputs, ... }:
 {
   flake.modules.nixos.gui =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      ...
+    }:
     {
       imports = [
         inputs.musnix.nixosModules.musnix

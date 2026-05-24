@@ -27,7 +27,7 @@
                     "keyColor": "yellow",
                     "format": "{6}{?6} {?}{10} {8}"
                 },
-        				
+
                 {
                     "type": "kernel",
                     "key": "├",
@@ -38,7 +38,7 @@
                     "key": "├󰏖",
                     "keyColor": "yellow"
                 }, */
-        			
+
                 {
                     "type": "shell",
                     "key": "└",
@@ -73,13 +73,13 @@
                     "key": "└",
                     "keyColor": "blue"
                 },
-        				
+
                 {
                     "type": "wallpaper",
                     "key": "└󰸉",
                     "keyColor": "blue"
                 },
-        			
+
 
                 "break",
                 {

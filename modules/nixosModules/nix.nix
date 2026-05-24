@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   flake.modules.nixos.nix-conf =
     { config, ... }:

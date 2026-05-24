@@ -1,7 +1,11 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.niri =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      ...
+    }:
     let
       startup =
         with pkgs;

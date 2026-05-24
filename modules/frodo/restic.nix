@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   full = [
     "/var/lib/garf/scores.db"
@@ -19,7 +23,11 @@ let
 in
 {
   flake.modules.nixos.restic =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
     {
       services.restic.backups = {
         # idk why this is called this but don't wanna change it

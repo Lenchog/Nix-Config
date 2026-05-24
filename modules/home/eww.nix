@@ -1,6 +1,10 @@
 {
   flake.modules.homeManager.eww =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      ...
+    }:
     let
       audio =
         pkgs.writeShellScriptBin "audio"

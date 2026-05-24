@@ -1,4 +1,8 @@
-{ inputs, self, ... }:
+{
+  inputs,
+  self,
+  ...
+}:
 {
   flake = {
     nixosConfigurations.aragorn = inputs.nixpkgs.lib.nixosSystem {
