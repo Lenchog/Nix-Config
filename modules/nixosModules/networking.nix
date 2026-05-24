@@ -10,13 +10,21 @@
       networking = {
         useDHCP = lib.mkDefault true;
         networkmanager.enable = true;
-        nameservers = [ "192.168.1.42" ];
+        nameservers = [
+          "192.168.1.42"
+          "1.1.1.1"
+        ];
       };
       time.timeZone = "Australia/Sydney";
       i18n.defaultLocale = "en_AU.UTF-8";
       programs.ssh.extraConfig = ''
         Host frodo
-          Hostname lench.org
+          Hostname 192.168.1.42
+          Port 2121
+          User lenny
+          IdentityFile ${config.sops.secrets."ssh-private-key".path}
+        Host sam
+          Hostname 192.168.1.4
           Port 2121
           User lenny
           IdentityFile ${config.sops.secrets."ssh-private-key".path}
