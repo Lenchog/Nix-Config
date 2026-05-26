@@ -21,13 +21,13 @@
             };
           }
           {
-            name = "zsh-patina";
+            name = "zsh-patina activate";
             file = "zsh-patina.plugin.zsh";
             src = pkgs.fetchFromGitHub {
-              owner = "michael-kraemer";
+              owner = "michel-kraemer";
               repo = "zsh-patina";
               rev = "master";
-              sha256 = "";
+              sha256 = "rF98Eyw5i80/WD6RONj9qpeyKbo6H0sNWFM8zM5B5Ys=";
             };
           }
           {
