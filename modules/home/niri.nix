@@ -55,6 +55,7 @@
               "Mod+W".action.screenshot = { };
               "Mod+Q".action = close-window;
               "Mod+A".action = fullscreen-window;
+              "Mod+E".action = toggle-window-floating;
               "Mod+Shift+Q".action = quit;
               "Mod+H".action = focus-column-left;
               "Mod+J".action = focus-window-down;
