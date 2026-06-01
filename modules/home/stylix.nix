@@ -10,14 +10,10 @@
       imports = [ inputs.stylix.homeModules.stylix ];
       stylix = {
         enable = true;
-        image = ../../wallpapers/lakeside.png;
+        image = ../../wallpapers/mononoke.png;
         polarity = "dark";
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-        #base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-        #base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
-        #base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-        #base16Scheme = inputs.kleur.themes.${pkgs.system}.dark.base16;
-        opacity.terminal = 0.8;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+        opacity.terminal = 0.9;
 
         fonts = {
           monospace = {
