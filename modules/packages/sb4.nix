@@ -2,7 +2,7 @@
   perSystem =
     { pkgs, ... }:
     let
-      version = "100298";
+      version = "100338";
     in
     {
       packages = {
@@ -24,7 +24,7 @@
           # specify the content hash of this derivations output
           outputHashAlgo = "sha256";
           outputHashMode = "recursive";
-          outputHash = "qi9g+Fdw5jG7Znnq7ReILOALAfnyirvwl7FA/WPrrU4=";
+          outputHash = "xS3Jukch7HNIsPgpv5+mEm6iOI9+lho0TEZazkTIjZg=";
         };
       };
     };
