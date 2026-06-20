@@ -8,7 +8,7 @@
       packages = {
         stoneblock-4 = pkgs.stdenvNoCC.mkDerivation {
           pname = "sb4-installer";
-          version = "1.12.0";
+          version = "${version}";
           src = pkgs.fetchurl {
             url = "https://api.feed-the-beast.com/v1/modpacks/public/modpack/130/${version}/server/linux";
             sha256 = "NobyDRE3zmbYDhBRqZpL7NFJ4VQRjC/Y8OImWYF6bvc=";
