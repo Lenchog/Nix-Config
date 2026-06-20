@@ -45,7 +45,7 @@
                 level-type = "minecraft\\:normal";
                 spawn-protection = 512;
                 server-name = "Stoneblock 4 Server";
-                motd = "\\u00a77Stoneblock 4\\u00a7r\\n\\u00a7bv1.12.0 \\u00a7e[Whitelist]";
+                motd = "\\u00a77Stoneblock 4\\u00a7r\\n\\u00a7bv1.14.1 \\u00a7e[Whitelist]";
                 server-port = 25564;
                 white-list = true;
               };
