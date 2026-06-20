@@ -53,19 +53,28 @@
               auto-format = true;
               language-servers = [ "jdtls" ];
             }
+            {
+              name = "haskell";
+              auto-format = true;
+              language-servers = [ "haskell-language-server-wrapper" ];
+            }
           ];
-          language-server = {
+          language-server = with pkgs; {
             rust-analyzer.config.check = {
               command = "clippy";
             };
             ruff = {
-              command = "${pkgs.ruff}/bin/ruff";
+              command = "${ruff}/bin/ruff";
             };
             jdtls = {
-              command = "${pkgs.jdt-language-server}/bin/jdtls";
+              command = "${jdt-language-server}/bin/jdtls";
             };
             nil = {
-              commands = "${inputs.nil}/bin/nil";
+              command = "${inputs.nil}/bin/nil";
+            };
+            haskell-language-server-wrapper = {
+              command = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
+              args = [ "--lsp" ];
             };
           };
         };
