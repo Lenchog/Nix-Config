@@ -12,9 +12,6 @@
             "${anyrun}/lib/libsymbols.so"
             "${anyrun}/lib/librink.so"
             "${anyrun}/lib/libnix_run.so"
-            "${anyrun}/lib/libactions.so"
-            "${anyrun}/lib/libwebsearch.so"
-            "${anyrun}/lib/libdictionary.so"
           ];
         };
       };
