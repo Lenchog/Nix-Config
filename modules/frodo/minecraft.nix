@@ -19,6 +19,7 @@
             files = {
               config = "${package}/lib/config";
               serverutilities = "${package}/lib/serverutilities";
+              "serverutilities/serverutilities.cfg" = ./serverutilities.cfg;
               mods = "${package}/lib/mods";
               "mods/distanthorizons-alpha20.jar" = pkgs.fetchurl rec {
                 pname = "distanthorizons";
