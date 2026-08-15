@@ -15,13 +15,13 @@
           ${uwsm}/bin/uwsm app -- ${xwayland-satellite}/bin/xwayland-satellite &
           ${uwsm}/bin/uwsm app -- ${anyrun}/bin/anyrun daemon
         '';
+
     in
     {
       imports = [ inputs.niri.homeModules.niri ];
-      nixpkgs.overlays = [ inputs.niri.overlays.niri ];
       programs.niri = {
         enable = true;
-        package = pkgs.niri-unstable;
+        package = pkgs.niri;
         settings = {
           environment = {
             DISPLAY = ":0";
