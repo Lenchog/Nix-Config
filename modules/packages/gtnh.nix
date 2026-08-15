@@ -20,16 +20,16 @@
     {
       packages.gtnh = pkgs.stdenvNoCC.mkDerivation rec {
         pname = "gt-new-horizons";
-        version = "2.8.4";
+        version = "2.9.0-beta-2";
         meta.mainProgram = "gt-new-horizons";
 
         src = pkgs.fetchzip {
           url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${version}_Server_Java_17-25.zip";
-          hash = "sha256-WgTv53dNuH9jZ3L4+STDB/ydRjkWd1iVU7Mzpsp/Pls=";
+          sha256 = "7AAHYUlELt8kZR8quRxIiR+3osgpBWb0sstO6aDBp6U=";
           stripRoot = false;
         };
 
-        jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
+        jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-26;
 
         nativeBuildInputs = with pkgs; [
           makeWrapper
@@ -62,8 +62,7 @@
           # Collect mods and pass them as --mods. Has to be in runtime to get their path relative to PWD
           makeWrapper ${lib.getExe jre_headless} $out/bin/gt-new-horizons \
             --run "$preStart $out" \
-            --run 'mods="$(find "$(realpath --relative-to="$PWD" '$out'/lib/mods)" -name "*.jar" | tr "\n" ",")"' \
-            --append-flags "@$out/lib/java9args.txt -cp $mainJar:$class_path $main_class nogui --mods \"\$mods\""
+            --append-flags "@$out/lib/java9args.txt -cp $mainJar:$class_path $main_class nogui"
         '';
       };
     };

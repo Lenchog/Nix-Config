@@ -16,23 +16,25 @@
         homeManager
         networking
         syncthing
+        laptop
         legolas
         kanata
         sops
         nh
       ];
     };
+    modules.nixos.laptop = {
+      networking.hostName = "legolas";
+    };
     modules.nixos.legolas =
       { pkgs, ... }:
       {
-        networking.hostName = "legolas";
 
         powerManagement = {
           enable = true;
           powertop.enable = true;
         };
         services = {
-          asusd.enable = true;
           tlp = {
             enable = true;
             settings = {
