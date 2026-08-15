@@ -9,9 +9,7 @@
     {
       imports = [
         inputs.musnix.nixosModules.musnix
-        # inputs.niri.nixosModules.niri
       ];
-      nixpkgs.overlays = [ inputs.niri.overlays.niri ];
       musnix.enable = true;
       programs = {
         uwsm = {
@@ -19,7 +17,7 @@
           waylandCompositors = {
             niri = {
               prettyName = "niri";
-              binPath = "${pkgs.niri-unstable}/bin/niri-session";
+              binPath = "${config.programs.niri.package}/bin/niri-session";
             };
           };
         };
