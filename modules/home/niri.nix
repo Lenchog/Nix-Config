@@ -55,7 +55,8 @@
               "Mod+F".action = sh "${uwsm}/bin/uwsm app -- ${foot}/bin/footclient";
               "Mod+W".action.screenshot = { };
               "Mod+Q".action = close-window;
-              "Mod+A".action = fullscreen-window;
+              "Mod+R".action = fullscreen-window;
+              "Mod+A".action = maximise-window-to-edges;
               "Mod+E".action = toggle-window-floating;
               "Mod+Shift+Q".action = quit;
               "Mod+H".action = focus-column-left;
