@@ -30,7 +30,7 @@
             };
             jvmOpts = "-Xms10G -Xmx10G -XX:+UseZGC";
             serverProperties = {
-              online-mode = false;
+              online-mode = true;
               allow-flight = true;
               announce-player-achievements = true;
               difficulty = 3;
