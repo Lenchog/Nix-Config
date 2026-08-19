@@ -27,6 +27,18 @@
                 url = "https://github.com/DarkShadow44/DistantHorizonsStandalone/releases/download/${version}/${pname}-${version}.jar";
                 sha256 = "FkhFzdK0QMGfp6g8NIwxL0SWsxrWlg4pFpi6ry1x75U=";
               };
+              "mods/Spark.jar" = pkgs.fetchurl rec {
+                pname = "spark";
+                version = "v0.0.16";
+                url = "https://github.com/GTNewHorizons/spark/releases/download/${version}/spark-forge1710-1.10-SNAPSHOT.jar";
+                sha256 = "NsC8fFZl29KvOE82CeBoQtPBSlK13692MiiPjwpXMU8=";
+              };
+              "mods/DiscordIntegration.jar" = pkgs.fetchurl rec {
+                pname = "DiscordIntegration";
+                version = "3.0.5";
+                url = "https://mediafilez.forgecdn.net/files/2542/338/DiscordIntegration-mc1.7.10-3.0.5.jar";
+                sha256 = "gSemqcsV9kmOpx95RiT/HRYRxYAe2W/hgS0pX2O3FGQ=";
+              };
             };
             jvmOpts = "-Xms10G -Xmx10G -XX:+UseZGC";
             serverProperties = {
