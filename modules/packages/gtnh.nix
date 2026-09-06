@@ -20,12 +20,12 @@
     {
       packages.gtnh = pkgs.stdenvNoCC.mkDerivation rec {
         pname = "gt-new-horizons";
-        version = "2.9.0-beta-2";
+        version = "2.9.0-beta-3";
         meta.mainProgram = "gt-new-horizons";
 
         src = pkgs.fetchzip {
-          url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${version}_Server_Java_17-25.zip";
-          sha256 = "7AAHYUlELt8kZR8quRxIiR+3osgpBWb0sstO6aDBp6U=";
+          url = "https://downloads.gtnewhorizons.com/ServerPacks/betas/GT_New_Horizons_${version}_Server_Java_17-26.zip";
+          sha256 = "7o7LiAdDdanM2CFoL8WPCejDPvfptKnjkSMcUcGe/SA=";
           stripRoot = false;
         };
 

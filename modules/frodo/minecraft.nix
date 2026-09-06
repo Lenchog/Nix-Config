@@ -17,7 +17,7 @@
           gtnh = rec {
             package = self.packages.${pkgs.system}.gtnh;
             files = {
-              config = "${package}/lib/config";
+              # config = "${package}/lib/config";
               serverutilities = "${package}/lib/serverutilities";
               "serverutilities/serverutilities.cfg" = ./serverutilities.cfg;
               mods = "${package}/lib/mods";
@@ -51,7 +51,7 @@
               level-type = "rwg";
               max-build-height = 256;
               max-players = 20;
-              motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.9.0 Beta 2 \\u00a7e[Whitelist]";
+              motd = "\\u00a77GT: New Horizons\\u00a7r\\n\\u00a7bv2.9.0 Beta 3 \\u00a7e[Whitelist]";
               hide-online-players = true;
               op-permission-level = 4;
               server-name = "GTNH";
